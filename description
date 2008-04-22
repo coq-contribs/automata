@@ -9,3 +9,4 @@ Description: This library formalises the beginning of formal language theory:
 	     and push-down automata.
 Keywords: formal language theory regular pushdown automata kleene
 Require:
+Category: Computer Science/Formal Languages Theory and Automata
