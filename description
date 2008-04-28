@@ -7,6 +7,6 @@ Date: June-July 1993
 Description: This library formalises the beginning of formal language theory: 
 	     finite automata and rational languages, context-free grammars
 	     and push-down automata.
-Keywords: formal language theory regular pushdown automata kleene
+Keywords: formal language theory, finite automatas, push-down automatas, rational langages, kleene
 Require:
 Category: Computer Science/Formal Languages Theory and Automata
