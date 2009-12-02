@@ -432,10 +432,9 @@ apply add_add.
 Qed.
 
 Lemma Id_image_V : Id (union X V1) f -> Vim = V1 :>Ensf.
-unfold Vim, Gim2, Gim, imageGram in |- *; simpl in |- *.
-generalize V1. 
-(* Clear V1; *) simple induction V3; auto with v62.
-clear V0.
+unfold Vim, Gim2, Gim, imageGram; simpl in |- *.
+generalize V1; clearbody C Gim; clear V1.
+simple induction V1; auto.
 intros a V1' Hyp Id_X_a_V1_f.
 unfold map in |- *.
 simpl in |- *.
