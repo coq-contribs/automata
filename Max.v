@@ -41,7 +41,7 @@
 Require Import Le.
 Require Import Lt.
 Require Import Ensf.
-Require Export Max.
+Require Export Arith.Max.
 
 (*  On definit maintenant (sup x) pour un ensemble x, qui est		*)
 (*    - soit O, si x ne contient pas d'entier				*)
