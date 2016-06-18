@@ -238,8 +238,7 @@ cut
   dans (couple e (couple x e12)) d).
 2: apply dans_add; auto with v62.
 intro H9; elim H9; clear H9.
-intro H9; injection H9.
-intros.
+intro H9; injection H9 as H12 H11 H10.
 absurd (dans e0 q); auto with v62.
 rewrite H12; auto with v62.
 
@@ -262,8 +261,7 @@ cut
   dans (couple e (couple x e12)) d).
 2: apply dans_add; auto with v62.
 intro H9; elim H9; clear H9.
-intro H9; injection H9.
-intros H10 H11 H12.
+intro H9; injection H9 as H12 H11 H10.
 absurd (dans e0 q); auto with v62.
 rewrite H12; auto with v62.
 

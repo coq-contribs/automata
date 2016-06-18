@@ -100,13 +100,14 @@ auto with v62.
 Qed.
 Hint Resolve singl2: v62.
 
+Unset Structural Injection.
+
 Lemma singl2_inv : forall x e : Elt, dans x (singleton e) -> x = e :>Elt.
 unfold singleton in |- *.
 intros x e H.
 simple inversion H.
 injection H1; intros.
 rewrite <- H0; assumption.
-
 injection H2; intros.
 apply dans_empty_imp_P with x0.
 rewrite <- H0; assumption.
