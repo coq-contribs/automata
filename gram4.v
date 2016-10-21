@@ -80,9 +80,9 @@ Lemma inter_X_Vu_d :
 intros G_1 G_2 N_dans_S_X.
 unfold inter in |- *.
 split.
- auto with v62.
+ auto.
  split.
-  auto with v62.
+  auto.
   intros x dans_x_X dans_x_Vu.
   absurd (dans x X).
   cut (S = x :>Elt \/ dans x (union V1 V2)). (**)
@@ -98,7 +98,7 @@ split.
 
 		Assumption.*)
 
-  (**)auto with v62.
+  (**)auto.
 
   assumption.
 Qed.
@@ -113,20 +113,20 @@ apply Regles_add2.
 change (Regles X (fst (Gunion V1 R1 V2 R2)) (snd (Gunion V1 R1 V2 R2)))
  in |- *.
 prolog [ Gunion_Regles ] 2.
-(*Apply Gunion_Regles with S1 S2;Auto with v62.*)
-auto with v62.
+(*Apply Gunion_Regles with S1 S2;Auto.*)
+auto.
 apply inmonoid_cons.
-trivial with v62.
+trivial.
 cut (dans S2 V2);
- [ auto with v62
+ [ auto
  | prolog [ isGram3 ] 2(*Apply isGram3 with X R2;Assumption*) ].
 
-auto with v62.
+auto.
 
 apply inmonoid_cons.
-trivial with v62.
+trivial.
 cut (dans S1 V1);
- [ auto with v62
+ [ auto
  | prolog [ isGram3 ] 2 (*Apply isGram3 with X R1;Assumption*) ].
 
 Qed.
@@ -159,7 +159,7 @@ elim Der_Ru_u.
 	replace S with A.
 	prolog [ inmonoid_cons_inv2 ] 2.
 	(*Apply inmonoid_cons_inv2 with v0;Assumption.*)
-	injection egal_S; auto with v62.
+	injection egal_S; auto.
 
 	intro dans_couple_add.
 	cut
@@ -169,18 +169,18 @@ elim Der_Ru_u.
 	intro egal_S.
 	absurd (dans S X \/ dans S V1).
 	red in |- *.
-	intro temp; elim temp; auto with v62.
+	intro temp; elim temp; auto.
 
 	apply dans_union.
 	replace S with A.
 	prolog [ inmonoid_cons_inv2 ] 2.
 	(*Apply inmonoid_cons_inv2 with v0;Assumption.*)
-	injection egal_S; auto with v62.
+	injection egal_S; auto.
 
 	intro dans_couple_union.	
 	cut (dans (couple A (word u0)) R1 \/ dans (couple A (word u0)) R2). (****)
 	(*Intuition.*)intro temp; elim temp; clear temp.
-		auto with v62.
+		auto.
 		intro dans_R2.
 		absurd (inter (union X V1) V2 empty).
 			red in |- *.
@@ -200,11 +200,11 @@ elim Der_Ru_u.
 						Assumption.*)
 		assumption.
 
-	(****)auto with v62.
+	(****)auto.
 
-	(***)auto with v62.
+	(***)auto.
 
-	(**)auto with v62.
+	(**)auto.
 
 	prolog [ inmonoid_cons_inv Derive2 ] 10.
 	(*Intros u0 v0 x Der_Ru imp inmon_cons_x_u0.
@@ -276,7 +276,7 @@ intros N_dans_X N_dans_V1 N_dans_V2 G_1 G_2 inter_V1_V2_empty u v
  Derivestar_Ru.
 pattern u, v in |- *.
 apply Derivestar_Ru.
-	auto with v62.
+	auto.
 
 	intros u0 v0 w Der_Ru inmon_v0_imp_Rstar_R1_v0 inmon_u0. 
 	apply Rstar_R with v0;
@@ -327,7 +327,7 @@ elim Der_Ru_u.
 	replace S with A.
 	prolog [ inmonoid_cons_inv2 ] 2.
 	(*Apply inmonoid_cons_inv2 with v0;Assumption.*)
-	injection egal_S; auto with v62.
+	injection egal_S; auto.
 
 	intro dans_couple_add.
 	cut
@@ -342,7 +342,7 @@ elim Der_Ru_u.
 	replace S with A.
 	prolog [ inmonoid_cons_inv2 ] 2.
 	(*Apply inmonoid_cons_inv2 with v0;Assumption.*)
-	injection egal_S; auto with v62.
+	injection egal_S; auto.
 
 	intro dans_couple_union.	
 	cut (dans (couple A (word u0)) R1 \/ dans (couple A (word u0)) R2). (****)
@@ -368,13 +368,13 @@ elim Der_Ru_u.
 		assumption.
 
 
-		trivial with v62.
+		trivial.
 		
-	(****)auto with v62.
+	(****)auto.
 
-	(***)auto with v62.
+	(***)auto.
 
-	(**)auto with v62.
+	(**)auto.
 
 	prolog [ inmonoid_cons_inv Derive2 ] 10.
 	(*Intros u0 v0 x Der_Ru imp inmon_cons_x_u0.
@@ -447,7 +447,7 @@ intros N_dans_X N_dans_V1 N_dans_V2 G_1 G_2 inter_V1_V2_empty u v
  Derivestar_Ru.
 pattern u, v in |- *.
 apply Derivestar_Ru.
-	auto with v62.
+	auto.
 
 	intros u0 v0 w Der_Ru inmon_v0_imp_Rstar_R2_v0 inmon_u0. 
 	apply Rstar_R with v0.
@@ -495,7 +495,7 @@ intro temp; elim temp; clear temp; intro temp; elim temp; clear temp.
      (add (couple S (word (cons S2 nil))) (union R1 R2))). (**)
 	intro temp; elim temp; clear temp.
 	intro egal_S.
-	injection egal_S; auto with v62.
+	injection egal_S; auto.
 	
 	intro dans_couple_add.
 	cut
@@ -503,7 +503,7 @@ intro temp; elim temp; clear temp; intro temp; elim temp; clear temp.
    dans (couple S (word x)) (union R1 R2)). (***)
 	intro temp; elim temp; clear temp.
 	intro egal_S.
-	injection egal_S; auto with v62.
+	injection egal_S; auto.
 	
 	intro dans_couple_union.	
 	cut (dans (couple S (word x)) R1 \/ dans (couple S (word x)) R2). (****)
@@ -524,11 +524,11 @@ intro temp; elim temp; clear temp; intro temp; elim temp; clear temp.
 			Apply isGram4 with S2;Assumption.
 			Assumption.*)
 
-	(****)auto with v62.
+	(****)auto.
 
-	(***)auto with v62.
+	(***)auto.
 
-	(**)auto with v62.
+	(**)auto.
 
 replace x with (Append x nil).
 replace nil with x0.
@@ -541,12 +541,12 @@ cut (Derive_inv Ru nil x).
 unfold Derive_inv in |- *.
 simpl in |- *.
 tauto.
-auto with v62.
+auto.
 
-auto with v62.
+auto.
 Qed.
 
-Hint Resolve Gunion_disj_Derive1: v62.
+Hint Resolve Gunion_disj_Derive1.
 
 
 
@@ -568,7 +568,7 @@ cut
   (exists2 w : Word, Derive Ru (cons S nil) w & Derivestar Ru w u)). (**)
 
 intro temp; elim temp; clear temp.
-	auto with v62.
+	auto.
 
 	intro temp; elim temp; clear temp.
 	intros x Der_Ru_cons_S_nil_x Derivestar_Ru_x_u.
@@ -578,42 +578,42 @@ intro temp; elim temp; clear temp.
 	intro temp; elim temp; clear temp; intro x_egal; rewrite x_egal.
 		apply or_introl.	
 		apply Gunion_disj_Derivestar;
-   [ auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
+   [ auto
+   | auto
+   | auto
+   | auto
+   | auto
+   | auto
+   | auto
    | idtac ].
 			rewrite <- x_egal; cut (dans S1 V1).
-						auto with v62.
+						auto.
 						prolog [ isGram3 ] 2.
 						(*Apply isGram3 with X R1.
 						Assumption.*)
 
 		apply or_intror.	
 		apply Gunion_disj_Derivestar2;
-   [ auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
-   | auto with v62
+   [ auto
+   | auto
+   | auto
+   | auto
+   | auto
+   | auto
+   | auto
    | idtac ].
 			rewrite <- x_egal; cut (dans S2 V2).
-						auto with v62.
+						auto.
 						prolog [ isGram3 ] 2.
 						(*Apply isGram3 with X R2.
 						Assumption.*)
 
-	(***)auto with v62.
+	(***)auto.
 	
-(**)auto with v62.
+(**)auto.
 Qed.
 
-Hint Resolve Gunion_disj_Derivestar_S: v62.
+Hint Resolve Gunion_disj_Derivestar_S.
 
 
 Lemma Gunion_disj_LG_inclus1 :
@@ -638,9 +638,9 @@ elimtype
 		apply inmonoid_cons_inv2 with nil.
 		rewrite eg_cons_S_nil_w; assumption.
 
-	intro temp; elim temp; clear temp; auto with v62.
+	intro temp; elim temp; clear temp; auto.
 
-(**)auto with v62.
+(**)auto.
 Qed.
 
 Lemma Gunion_disj_LG_inclus2 : l_inclus (LG X V1 R1 S1) (LG X Vu Ru S).
@@ -652,11 +652,11 @@ unfold Ru in |- *; simpl in |- *.
 split.
 	apply Derivestar_R with (cons S1 nil).
 		replace (cons S1 nil) with (Append (cons S1 nil) nil).
-			auto with v62.
+			auto.
 			
-			auto with v62.
+			auto.
 
-		apply Derivestar_inclus with R1; auto with v62.
+		apply Derivestar_inclus with R1; auto.
 
 assumption.
 Qed.
@@ -671,11 +671,11 @@ unfold Ru in |- *; simpl in |- *.
 split.
 	apply Derivestar_R with (cons S2 nil).
 		replace (cons S2 nil) with (Append (cons S2 nil) nil).
-			auto with v62.
+			auto.
 			
-			auto with v62.
+			auto.
 
-		apply Derivestar_inclus with R2; auto with v62.
+		apply Derivestar_inclus with R2; auto.
 
 assumption.
 Qed.

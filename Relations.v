@@ -124,7 +124,7 @@ Lemma Rstar_inv :
 intros x y Rstar_x_y.
 pattern x, y in |- *.
 apply Rstar_x_y.
-	auto with v62.
+	auto.
 
 	intros u v w R_u_v Hyp.
 	apply or_intror.
@@ -142,4 +142,4 @@ Qed.
 
 End Relations.
 
-Hint Resolve Rstar_reflexive: v62.
+Hint Resolve Rstar_reflexive.

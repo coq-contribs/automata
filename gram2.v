@@ -46,7 +46,7 @@ Require Import fonctions.
 Require Import Relations.
 Require Import gram.
 
-Hint Resolve extension_Id: v62.
+Hint Resolve extension_Id.
 Section resultats.
 
 
@@ -80,9 +80,9 @@ unfold Ru in |- *; unfold C in |- *; unfold Gunion in |- *; simpl in |- *.
 apply Regles_union; unfold Vu in |- *; unfold C in |- *;
  unfold Gunion in |- *; simpl in |- *.
 apply Regles_V with V1;
- [ auto with v62 | apply isGram4 with S1; auto with v62 ].
+ [ auto | apply isGram4 with S1; auto ].
 apply Regles_V with V2;
- [ auto with v62 | apply isGram4 with S2; auto with v62 ].
+ [ auto | apply isGram4 with S2; auto ].
 Qed.
 
 
@@ -97,7 +97,7 @@ elim Der_Ru_u.
 	apply Derive1.
 	cut (dans (couple A (word u0)) R1 \/ dans (couple A (word u0)) R2). (**)
 	intro temp; elim temp; clear temp.
-		auto with v62.
+		auto.
 
 		intro dans_R2.
 		absurd (inter (union X V1) V2 empty).
@@ -168,7 +168,7 @@ unfold Derivestar in |- *.
 intros G_1 G_2 inter_V1_V2_empty u v Derivestar_Ru.
 pattern u, v in |- *.
 apply Derivestar_Ru.
-	auto with v62. (*Intros.
+	auto. (*Intros.
 	Apply Rstar_reflexive.*)
 
 	intros u0 v0 w Der_Ru inmon_v0_imp_Rstar_R1_v0 inmon_u0. 
@@ -223,9 +223,9 @@ prolog [ inmonoid_cons_inv2 Regles_inv1 ] 3.
 *)
 		assumption.
 
-	trivial with v62.
+	trivial.
 
-	(**) auto with v62.
+	(**) auto.
 
 	prolog [ Derive2 inmonoid_cons_inv ] 10.
 (*	Intros u0 v0 x Der_Ru imp inmon_cons_x_u0.
@@ -301,7 +301,7 @@ unfold Derivestar in |- *.
 intros G_1 G_2 inter_V1_V2_empty u v Derivestar_Ru.
 pattern u, v in |- *.
 apply Derivestar_Ru.
-	auto with v62. (*Intros.
+	auto. (*Intros.
 	Apply Rstar_reflexive.*)
 
 	intros u0 v0 w Der_Ru inmon_v0_imp_Rstar_R2_v0 inmon_u0. 
@@ -363,9 +363,9 @@ Lemma dans_Rim :
 intros.
 unfold Rim, Gim3, Gim2, Gim, imageGram in |- *; simpl in |- *.
 replace (couple (f A) (word (wef u))) with (fonc (couple A (word u)));
- auto with v62.
+ auto.
 Qed.
-Hint Resolve dans_Rim: v62.
+Hint Resolve dans_Rim.
 
 Lemma image_Regles : Regles X V1 R1 -> Regles Xim Vim Rim.
 unfold Rim, Vim, Xim, Gim3, Gim2, Gim, imageGram, Regles in |- *;
@@ -383,9 +383,9 @@ exists (f A_ant).
 	rewrite x_egal; unfold fonc in |- *; unfold fet in |- *.
 	rewrite x_ant_egal; unfold first in |- *; unfold second in |- *;
   unfold word_inv in |- *; simpl in |- *.
-	trivial with v62.
+	trivial.
 	replace (union (map f X) (map f V1)) with (map f (union X V1));
-  auto with v62.
+  auto.
 
 apply dans_map; assumption. (*1*)
 Qed.
@@ -412,21 +412,21 @@ Lemma Id_image_X : Id (union X V1) f -> Xim = X :>Ensf.
 
 unfold Xim, Gim, imageGram in |- *; simpl in |- *.
 elim X.
-auto with v62.
+auto.
 (* Clear X. *)
 intros a X' Hyp Id_a_X_V1_f.
 unfold map in |- *.
 simpl in |- *.
 apply add_add.
-	auto with v62.
+	auto.
 
 	apply Hyp.
 	apply Id_inclus with (union (add a X') V1).
 
 		red in |- *; intros x dans_x_union_X_V1.
 		cut (dans x X' \/ dans x V1). 
-	        intros [HX| HV1]; auto with v62.
-		auto with v62.
+	        intros [HX| HV1]; auto.
+		auto.
 
 		assumption.
 Qed.
@@ -439,14 +439,14 @@ intros a V1' Hyp Id_X_a_V1_f.
 unfold map in |- *.
 simpl in |- *.
 apply add_add.
-	auto with v62.
+	auto.
 
 	apply Hyp.
 	apply Id_inclus with (union X (add a V1')).
 		red in |- *; intros x dans_x_union_X_V1.
 		cut (dans x X \/ dans x V1'). 
-		intros [HX| HV1]; auto with v62.
-		auto with v62.
+		intros [HX| HV1]; auto.
+		auto.
 					
 		assumption.
 Qed.
@@ -456,7 +456,7 @@ intros Id_X_V1_f.
 
 unfold Rim, Gim3, Gim2, Gim, imageGram in |- *; simpl in |- *.
 elim R1.
-auto with v62.
+auto.
 intros a R Hyp isGram_X_V1_R1_S1.
 unfold map in |- *.
 simpl in |- *.
@@ -471,15 +471,15 @@ apply add_add.
 
 	rewrite egal_a.
 	apply couple_couple; unfold first, second, word_inv in |- *; simpl in |- *.
-		auto with v62.
+		auto.
 
 		apply word_word.
-		cut (Id_words (union X V1) (Word_ext f)); auto with v62.
+		cut (Id_words (union X V1) (Word_ext f)); auto.
 		
 
-	trivial with v62.
+	trivial.
 
-	apply isGram4 with S1; trivial with v62.
+	apply isGram4 with S1; trivial.
 
 	prolog [ isGram_inclus3 ] 3.
 	(*Apply Hyp.
@@ -522,19 +522,19 @@ elim H; clear H u v.
 	intros u v A dans_A.
 	replace (wef (cons A v)) with (cons (f A) (wef v)).
 	replace (wef (Append u v)) with (Append (wef u) (wef v)).
-	auto with v62.
+	auto.
 
-	apply sym_equal; unfold wef in |- *; apply wef_append; auto with v62.
+	apply sym_equal; unfold wef in |- *; apply wef_append; auto.
 
-	auto with v62.
+	auto.
 
 	intros.
 	replace (wef (cons x u)) with (cons (f x) (wef u)).
-	 replace (wef (cons x v)) with (cons (f x) (wef v)); auto with v62.
-	 auto with v62.
+	 replace (wef (cons x v)) with (cons (f x) (wef v)); auto.
+	 auto.
 Qed.
 
-Hint Resolve Derive_image: v62.
+Hint Resolve Derive_image.
 
 Lemma Derivestar_image :
  forall u v : Word, Derivestar R1 u v -> Derivestar Rim (wef u) (wef v).
@@ -543,12 +543,12 @@ intros u v Hyp.
 unfold Derivestar, Rstar in Hyp.
 pattern u, v in |- *.
 apply Hyp.
-	auto with v62. (*Intros; Apply Rstar_reflexive. *)
+	auto. (*Intros; Apply Rstar_reflexive. *)
 	intros a b c DeriveR1 Rst.
-	apply Rstar_R with (y := wef b); auto with v62.
+	apply Rstar_R with (y := wef b); auto.
 Qed.
 
-Hint Resolve Derivestar_image: v62.
+Hint Resolve Derivestar_image.
 
 
 Lemma Reconnait_imageGram :
@@ -558,19 +558,19 @@ intro w.
 unfold LG in |- *.
 intro temp; split; elim temp; clear temp; intros Der inmo.
 	unfold Sim, Gim3, Gim2, Gim, imageGram in |- *; simpl in |- *.
-	replace (cons (f S1) nil) with (wef (cons S1 nil)); auto with v62.
+	replace (cons (f S1) nil) with (wef (cons S1 nil)); auto.
 
 	elim inmo.
-		auto with v62.
+		auto.
 		intros wo el.
 		unfold Xim, Gim, imageGram in |- *; simpl in |- *.
-		replace (wef (cons el wo)) with (cons (f el) (wef wo)); auto with v62.
+		replace (wef (cons el wo)) with (cons (f el) (wef wo)); auto.
 Qed.
 
 
 End resultats.
 
-Hint Resolve dans_Rim: v62.
-Hint Resolve Derive_image: v62.
-Hint Resolve Derivestar_image: v62.
-Hint Resolve Reconnait_imageGram: v62.
+Hint Resolve dans_Rim.
+Hint Resolve Derive_image.
+Hint Resolve Derivestar_image.
+Hint Resolve Reconnait_imageGram.

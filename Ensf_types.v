@@ -76,7 +76,7 @@ Definition natural_inv (e : Elt) : nat :=
   end.
 
 Lemma nat_invol : forall n : nat, natural_inv (natural n) = n.
-auto with v62.
+auto.
 Qed.
 (*
 Definition word_inv : Elt -> Word :=
@@ -102,9 +102,9 @@ Lemma add_add :
 intros.
 rewrite H.
 rewrite H0.
-trivial with v62.
+trivial.
 Qed.
-Hint Resolve add_add: v62.
+Hint Resolve add_add.
 
 
 Lemma couple_couple :
@@ -112,19 +112,19 @@ Lemma couple_couple :
 intros.
 rewrite H.
 rewrite H0.
-trivial with v62.
+trivial.
 Qed.
 
 Lemma word_word : forall a b : Word, a = b -> word a = word b.
 intros.
-apply (f_equal (A:=Word) (B:=Elt)); auto with v62.
+apply (f_equal (A:=Word) (B:=Elt)); auto.
 Qed.
-Hint Resolve word_word: v62.
+Hint Resolve word_word.
  
 Lemma word_word_inv : forall a b : Word, word a = word b -> a = b.
 intros a b H.
 injection H.
-trivial with v62.
+trivial.
 Qed.
 
 (*  Quelques simplifications  *)
@@ -143,5 +143,5 @@ Qed.
 
 Lemma equal_add : forall (a b : Ensf) (e : Elt), a = b -> add e a = add e b.
 intros.
-apply (f_equal (A:=Ensf) (B:=Ensf)); auto with v62.
+apply (f_equal (A:=Ensf) (B:=Ensf)); auto.
 Qed.

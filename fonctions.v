@@ -42,9 +42,9 @@ Require Import Ensf.
 Require Import Words.
 Require Import more_words.
 Require Import need.
-Hint Resolve dans_map_inv: v62.
-Hint Resolve dans_map: v62.
-Hint Resolve dans_add1: v62.
+Hint Resolve dans_map_inv.
+Hint Resolve dans_map.
+Hint Resolve dans_add1.
 
 Definition comp (f g : Elt -> Elt) (x : Elt) := f (g x).
 
@@ -52,7 +52,7 @@ Lemma map_map_eg_map_comp :
  forall (f g : Elt -> Elt) (E : Ensf),
  map f (map g E) = map (comp f g) E :>Ensf.
 intros f g.
-simple induction E; simpl in |- *; auto with v62.
+simple induction E; simpl in |- *; auto.
 Qed.
 
 
@@ -66,9 +66,9 @@ Lemma comp_Word_ext :
  eg_f_W_W (Word_ext (comp f g)) (comp_word (Word_ext f) (Word_ext g)).
 intros f g.
 unfold eg_f_W_W, Word_ext, comp, comp_word in |- *.
-simple induction x; simpl in |- *; auto with v62.
+simple induction x; simpl in |- *; auto.
 Qed.
-Hint Resolve comp_Word_ext: v62.
+Hint Resolve comp_Word_ext.
 
 Definition Id (E : Ensf) (f : Elt -> Elt) :=
   forall x : Elt, dans x E -> f x = x :>Elt.
@@ -76,28 +76,28 @@ Definition Id (E : Ensf) (f : Elt -> Elt) :=
 Lemma Id_inv :
  forall (E : Ensf) (f : Elt -> Elt) (x : Elt),
  dans x E -> Id E f -> f x = x :>Elt.
-auto with v62.
+auto.
 Qed.
 
-Hint Unfold Id: v62.
+Hint Unfold Id.
 
 Lemma Id_inclus :
  forall (E F : Ensf) (f : Elt -> Elt), inclus F E -> Id E f -> Id F f.
-auto with v62.
+auto.
 Qed.
 
 Lemma map_Id :
  forall (E : Ensf) (f : Elt -> Elt), Id E f -> map f E = E :>Ensf.
 intros E f.
  elim E; unfold map in |- *.
- auto with v62.
+ auto.
 
  intros a b Hyp_rec Id_a_b_f.
  apply add_add.
-	auto with v62.
+	auto.
 
  	apply Hyp_rec.
-	apply Id_inclus with (add a b); auto with v62.
+	apply Id_inclus with (add a b); auto.
 Qed.
 
 
@@ -108,7 +108,7 @@ Lemma Id_words_inv :
  forall (E : Ensf) (f : Word -> Word) (x : Word),
  inmonoid E x -> Id_words E f -> f x = x :>Word.
 
-auto with v62.
+auto.
 Qed.
 
 
@@ -128,7 +128,7 @@ Lemma extension_Id :
 intros E f Id_E_f.
 red in |- *.
 simple induction x; clear x.
-	auto with v62.
+	auto.
 
         unfold Word_ext in |- *.
 	(* plus simple :
@@ -156,7 +156,7 @@ Variable f : Elt -> Elt.
 
 Definition application := forall x : Elt, dans x E -> dans (f x) F.
 
-Hint Unfold application: v62.
+Hint Unfold application.
 
 (*Definition de l'injectivite*)
 
@@ -176,7 +176,7 @@ Definition is_iso := is_epi /\ is_mono.
 
 
 Lemma mono_epi_imp_iso : is_mono -> is_epi -> is_iso.
-intros; red in |- *; auto with v62.
+intros; red in |- *; auto.
 Qed.
 
 
@@ -208,13 +208,13 @@ Definition is_epi_words :=
 Definition is_iso_words := is_mono_words /\ is_epi_words.
 
 Lemma mono_epi_imp_iso_words : is_mono_words -> is_epi_words -> is_iso_words.
-intros; red in |- *; auto with v62.
+intros; red in |- *; auto.
 Qed.
 
 End fonctions.
 
 
-Hint Resolve mono_epi_imp_iso: v62.
+Hint Resolve mono_epi_imp_iso.
 
 
 Parameter inv : Ensf -> Ensf -> (Elt -> Elt) -> Elt -> Elt.
@@ -223,30 +223,30 @@ Axiom
   dans_inv_f :
     forall (E F : Ensf) (f : Elt -> Elt),
     is_iso E F f -> forall x : Elt, dans x F -> dans (inv E F f x) E.
-Hint Resolve dans_inv_f: v62.
+Hint Resolve dans_inv_f.
 
 Axiom
   inv1 :
     forall (E F : Ensf) (f : Elt -> Elt),
     is_iso E F f -> forall x : Elt, dans x E -> inv E F f (f x) = x :>Elt.
 
-Hint Resolve inv1: v62.
+Hint Resolve inv1.
 
 Axiom
   inv2 :
     forall (E F : Ensf) (f : Elt -> Elt),
     is_iso E F f -> forall x : Elt, dans x F -> f (inv E F f x) = x :>Elt.
 
-Hint Resolve inv2: v62.
+Hint Resolve inv2.
 
 Lemma inv1' :
  forall (E F : Ensf) (f : Elt -> Elt),
  is_iso E F f -> Id E (comp (inv E F f) f).
 unfold Id, comp in |- *.
 intros.
-auto with v62.
+auto.
 Qed.
-Hint Resolve inv1': v62.
+Hint Resolve inv1'.
 (* On etend la fonction f : Elt-> Elt definie sur V*)
 (*en la fonction F=(extension V f)*)
 (*definie sur Elt par F(x) = f(x) sur V et F(x)=x ailleurs*)
@@ -301,11 +301,11 @@ Variable E : Ensf.
 Variable F : Ensf.
 Variable f : Elt -> Elt.
 
-Hint Unfold application: v62.
+Hint Unfold application.
 Lemma is_epi_f_over_image : is_epi E (map f E) f.
 
 split.
- auto with v62.
+ auto.
 
 
  intros.
@@ -315,21 +315,21 @@ split.
 
 	prolog [ ex_intro2 ] 4.
 	(*Intros y temp; Elim temp; Clear temp ; Intros dans_y egal_y.
-	Exists y;Auto with v62.*)
+	Exists y;Auto.*)
 
- 	auto with v62.
+ 	auto.
 
 Qed.
 
-Hint Resolve is_epi_f_over_image: v62.
+Hint Resolve is_epi_f_over_image.
 
 Lemma mono_imp_iso_over_image : is_mono E f -> is_iso E (map f E) f.
-auto with v62.
+auto.
 Qed.
 
 Let invf := inv E F f.
 
-Hint Unfold invf: v62.
+Hint Unfold invf.
 
 Lemma inv_is_mono : is_iso E F f -> is_mono F invf.
 intros.
@@ -338,8 +338,8 @@ intros x y dans_x dans_y egal_inv.
 replace x with (f (inv E F f x)).
 replace y with (f (inv E F f y)).
 apply (f_equal (A:=Elt) (B:=Elt)); assumption.
-auto with v62.
-auto with v62.
+auto.
+auto.
 Qed.
 
 
@@ -347,13 +347,13 @@ Lemma inv_is_epi : is_iso E F f -> is_epi F E invf.
 unfold invf in |- *.
 intro is_iso_f.
 split.
- auto with v62. (* Hint : dans_inv_f*)
+ auto. (* Hint : dans_inv_f*)
 
-(* Hints Resolve inv1 : v62.*)
+(* Hints Resolve inv1 .*)
  intros x dans_x.
- exists (f x); [ apply sym_equal; auto with v62 | elim is_iso_f ].
+ exists (f x); [ apply sym_equal; auto | elim is_iso_f ].
  intros is_epi_f. elim is_epi_f.
- auto with v62.
+ auto.
 
 Qed.
 
@@ -364,14 +364,14 @@ Lemma application_imp_application_words :
 intro Hyp.
 red in |- *.
 intros x inmon; elim inmon; clear inmon.
-	auto with v62.
+	auto.
 
 	intros.
-	replace (wef (cons e w)) with (cons (f e) (wef w)); auto with v62.
+	replace (wef (cons e w)) with (cons (f e) (wef w)); auto.
 
 Qed.
 
-Hint Resolve application_imp_application_words: v62.
+Hint Resolve application_imp_application_words.
 
 Lemma is_mono_f_imp_is_mono_words : is_mono E f -> is_mono_words E wef.
 intro Hyp.
@@ -380,7 +380,7 @@ simple induction x.
 	intros.
 	apply sym_equal.
 	apply wef_nil with f.
-	auto with v62.
+	auto.
 
 	intros x0 w0. intros.
 	cut
@@ -395,32 +395,32 @@ simple induction x.
 	intros.
 	rewrite <- y_egal.
 	apply cons_cons.
-	apply Hyp. (*; Auto with v62.*)
+	apply Hyp. (*; Auto.*)
 	apply inmonoid_cons_inv2 with w0; assumption.
 	apply inmonoid_cons_inv2 with r; rewrite y_egal; assumption.
-	auto with v62.
+	auto.
 	apply H.
 		apply (inmonoid_cons_inv E w0 x0); assumption.
 		apply (inmonoid_cons_inv E r e); rewrite y_egal; assumption.
-		auto with v62.
+		auto.
 
 	(*Resolution du Cut*)
 	unfold wef in |- *.
 (*	Apply wef_cons.*)
-	auto with v62.
+	auto.
 Qed.
 
-Hint Resolve is_mono_f_imp_is_mono_words: v62.
+Hint Resolve is_mono_f_imp_is_mono_words.
 
 Lemma is_epi_f_imp_is_epi_words : is_epi E F f -> is_epi_words E F wef.
 intro temp; elim temp; clear temp.
 intro application_f.
 intro is_epi_f.
 split.
-auto with v62.
+auto.
 
 simple induction x; clear x.
-	exists nil; auto with v62.
+	exists nil; auto.
 
 	intros x w Hyp inmonoid_F_cons.
 	cut (exists2 y : Word, w = wef y & inmonoid E y). (*1*)
@@ -431,9 +431,9 @@ simple induction x; clear x.
 	intros x_ant x_egal dans_x_ant.
 	exists (cons x_ant y1).
 		unfold wef, Word_ext in |- *.
-		auto with v62.
+		auto.
 		
-		auto with v62. (* inmonoid_cons *)
+		auto. (* inmonoid_cons *)
 	(*Cut2*)
 	prolog [ inmonoid_cons_inv2 ] 3.     (*Apply is_epi_f.
 		Apply inmonoid_cons_inv2 with w; Assumption.*)
@@ -444,12 +444,12 @@ simple induction x; clear x.
 
 Qed.
 
-Hint Resolve is_epi_f_imp_is_epi_words: v62.
+Hint Resolve is_epi_f_imp_is_epi_words.
 
 Lemma is_iso_f_imp_is_iso_words : is_iso E F f -> is_iso_words E F wef.
 intro is_iso_f.
 elim is_iso_f; intros.
-split; auto with v62.
+split; auto.
 Qed.
 
 Let invf' := inv E F f.
@@ -475,13 +475,13 @@ generalize x.
 change (Id_words E (Word_ext (comp invf' f))) in |- *.
 apply extension_Id.
 unfold invf' in |- *.
-auto with v62.
+auto.
 
 (*Cut*)
-auto with v62.
+auto.
 Qed.
 
 
 
 End fonctions2.
-Hint Resolve mono_imp_iso_over_image: v62.
+Hint Resolve mono_imp_iso_over_image.
