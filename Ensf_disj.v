@@ -67,30 +67,30 @@ Lemma dans_map_injg :
  forall (e : Ensf) (x : Elt), dans x (map injgauche e) -> dans (first x) e.
 intros.
 cut (exists y : Elt, dans y e /\ x = injgauche y).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht.
 intros y Ht; elim Ht; clear Ht.
 intros.  
 unfold injgauche in H1.
-replace (first x) with y; auto with v62.
+replace (first x) with y; auto.
 symmetry  in |- *.
-replace y with (first (couple y zero)); auto with v62.
-apply (f_equal (A:=Elt) (B:=Elt)); auto with v62.
+replace y with (first (couple y zero)); auto.
+apply (f_equal (A:=Elt) (B:=Elt)); auto.
 Qed.
 
 Lemma dans_map_injd :
  forall (e : Ensf) (x : Elt), dans x (map injdroite e) -> dans (first x) e.
 intros.
 cut (exists y : Elt, dans y e /\ x = injdroite y).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht.
 intros y Ht; elim Ht; clear Ht.
 intros.  
 unfold injdroite in H1.
-replace (first x) with y; auto with v62.
+replace (first x) with y; auto.
 symmetry  in |- *.
-replace y with (first (couple y un)); auto with v62.
-apply (f_equal (A:=Elt) (B:=Elt)); auto with v62.
+replace y with (first (couple y un)); auto.
+apply (f_equal (A:=Elt) (B:=Elt)); auto.
 Qed.
 
 Lemma absurd_injg_injd :
@@ -98,14 +98,14 @@ Lemma absurd_injg_injd :
  dans x (map injgauche e) -> ~ dans x (map injdroite f).
 intros.
 cut (exists y : Elt, dans y e /\ x = injgauche y).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht.
 intros y Ht; elim Ht; clear Ht.
 intros.  
 red in |- *.
 intro.
 cut (exists y' : Elt, dans y' f /\ x = injdroite y' :>Elt).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht.
 intros y' Ht; elim Ht; clear Ht.
 intros.  
@@ -116,11 +116,11 @@ discriminate.
 
 unfold injdroite in H4.
 unfold injgauche in H1.
-replace zero with (second (couple y zero)); auto with v62.
-replace un with (second (couple y' un)); auto with v62.
+replace zero with (second (couple y zero)); auto.
+replace un with (second (couple y' un)); auto.
 rewrite <- H4.
 rewrite <- H1.
-auto with v62.
+auto.
 Qed.
 
 (*									*)
@@ -137,12 +137,12 @@ Lemma union_disj1 :
 unfold union_disj in |- *.
 intros.
 cut (dans x (map injgauche a) \/ dans x (map injdroite b)).
-2: auto with v62.
+2: auto.
 intro H0; elim H0; clear H0.
 intro; left.
-apply dans_map; auto with v62.
+apply dans_map; auto.
 intro; right.
-apply dans_map; auto with v62.
+apply dans_map; auto.
 Qed.
 
 Lemma union_disj_d :
@@ -152,7 +152,7 @@ intros.
 unfold union_disj in |- *.
 apply union_d.
 apply dans_map_inv.
-auto with v62.
+auto.
 Qed.
 
 Lemma union_disj_g :
@@ -162,7 +162,7 @@ intros.
 unfold union_disj in |- *.
 apply union_g.
 apply dans_map_inv.
-auto with v62.
+auto.
 Qed.
 
 Lemma inclus_union_disj :
@@ -171,32 +171,32 @@ Lemma inclus_union_disj :
 unfold inclus in |- *.
 intros.
 unfold union_disj in H1.
-cut (dans x (map injgauche a) \/ dans x (map injdroite b)); auto with v62.
+cut (dans x (map injgauche a) \/ dans x (map injdroite b)); auto.
 intro Ht; elim Ht; clear Ht.
 
 intro.
 cut (exists y : Elt, dans y a /\ x = injgauche y).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht.
 intros y Ht; elim Ht; clear Ht; intros H3 H4.
-cut (dans y c); auto with v62.
+cut (dans y c); auto.
 intro.
 unfold union_disj in |- *.
 apply union_g.
 rewrite H4.
-apply dans_map_inv; auto with v62.
+apply dans_map_inv; auto.
 
 intro.
 cut (exists y : Elt, dans y b /\ x = injdroite y :>Elt).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht.
 intros y Ht; elim Ht; clear Ht; intros H3 H4.
-cut (dans y d); auto with v62.
+cut (dans y d); auto.
 intro.
 unfold union_disj in |- *.
 apply union_d.
 rewrite H4.
-apply dans_map_inv; auto with v62.
+apply dans_map_inv; auto.
 Qed.
 
 (* 									*)
@@ -212,4 +212,4 @@ rewrite X.
 rewrite Y.
 apply refl_equal.
 Qed.
-Hint Resolve pair_equal: v62.
+Hint Resolve pair_equal.

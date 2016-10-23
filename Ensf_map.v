@@ -69,25 +69,25 @@ intros f.
 simple induction a.
 simpl in |- *.
 intros x H.
-absurd (dans x empty); auto with v62.
+absurd (dans x empty); auto.
 
 intros a0 b H x.
 simpl in |- *.
 intro.
 cut (f a0 = x :>Elt \/ dans x (map f b)).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
-intro; exists a0; auto with v62.
+intro; exists a0; auto.
 intro.
 cut (exists y : Elt, dans y b /\ x = f y).
 intro H2; elim H2; clear H2.
-2: auto with v62.
+2: auto.
 intros x0 H2; elim H2; clear H2.
 intros.
 exists x0.
-split; auto with v62.
+split; auto.
 Qed.
-Hint Resolve dans_map: v62.
+Hint Resolve dans_map.
 
 Lemma dans_map_inv :
  forall (f : Elt -> Elt) (x : Elt) (a : Ensf),
@@ -95,49 +95,49 @@ Lemma dans_map_inv :
 intros f x.
 simple induction a.
 intro.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 
 intros a0 b H.
 simpl in |- *.
 intro H1.
 cut (a0 = x :>Elt \/ dans x b).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H2; elim H2; clear H2.
 intro.
-rewrite H0; auto with v62.
-auto with v62.
+rewrite H0; auto.
+auto.
 Qed.
-Hint Resolve dans_map_inv: v62.
+Hint Resolve dans_map_inv.
 
 Lemma map_union :
  forall (f : Elt -> Elt) (a b : Ensf),
  union (map f a) (map f b) = map f (union a b) :>Ensf.
 intro f.
-simple induction a; simpl in |- *; auto with v62.
+simple induction a; simpl in |- *; auto.
 Qed.
-Hint Resolve map_union: v62.
+Hint Resolve map_union.
 
 Lemma dans_map_trans :
  forall (x : Elt) (f : Elt -> Elt) (a b : Ensf),
  dans x (map f a) -> inclus a b -> dans x (map f b).
 intros.
 cut (exists y : Elt, dans y a /\ x = f y :>Elt).
-2: apply dans_map; auto with v62. 
+2: apply dans_map; auto. 
 intro Ht; elim Ht; clear Ht.
 intros y Ht; elim Ht; clear Ht.
 intros.
 cut (dans y b).
-2: apply dans_trans with a; auto with v62.
+2: apply dans_trans with a; auto.
 intro.
 rewrite H2.
-apply dans_map_inv; auto with v62.
+apply dans_map_inv; auto.
 Qed.
 
 Lemma map_egal :
  forall (f g : Elt -> Elt) (E : Ensf),
  (forall x : Elt, dans x E -> f x = g x :>Elt) -> map f E = map g E :>Ensf.
 intros f g.
-simple induction E; simpl in |- *; auto with v62.
+simple induction E; simpl in |- *; auto.
 Qed.
 
 Lemma map_inclus :
@@ -146,9 +146,9 @@ Lemma map_inclus :
 unfold inclus in |- *.
 intros.
 cut (exists y : Elt, dans y a /\ x = f y :>Elt).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht; intros y Ht; elim Ht; clear Ht; intros.
-cut (dans y b); auto with v62.
+cut (dans y b); auto.
 intro.
-replace x with (f y); auto with v62.
+replace x with (f y); auto.
 Qed.

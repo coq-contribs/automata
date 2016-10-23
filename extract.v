@@ -90,7 +90,7 @@ cut (l_egal L LL).
 intro temp; elim temp.
 unfold l_inclus in |- *.
 intros.
-auto with v62.
+auto.
 unfold L, LL, wa, wd, d, f_R_d, f_X_d in |- *.
 apply equiv_APD_Gram.
 exact H.
@@ -104,7 +104,7 @@ cut (l_egal L LL).
 intro temp; elim temp.
 unfold l_inclus in |- *.
 intros.
-auto with v62.
+auto.
 unfold L, LL, wa, wd, d, f_R_d, f_X_d in |- *.
 apply equiv_APD_Gram.
 exact H.

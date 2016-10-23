@@ -77,7 +77,7 @@ replace x with x0; prolog [ sym_equal couple_couple_inv1 ] 3.
 	Apply sym_equal.
 	Apply couple_couple_inv1 with y (word u); Assumption.*)
 
-auto with v62.
+auto.
 Qed.
 
 Lemma Regles_inv2 :
@@ -95,8 +95,8 @@ intros u0 eg_couple inmonoid_u0.
 replace u with u0; prolog [ sym_equal couple_couple_inv2 word_word_inv ] 4.
 	(*Assumption.
 	Apply word_word_inv.
-	Apply couple_couple_inv2 with x0 x;Auto with v62.*)
-(**) auto with v62.
+	Apply couple_couple_inv2 with x0 x;Auto.*)
+(**) auto.
 Qed.
 
 
@@ -118,7 +118,7 @@ Let H := isGram X V R S.
 Lemma isGram1 : H -> Mots X.
 intro H1.
 elim H1.
-trivial with v62.
+trivial.
 Qed.
 
 Lemma isGram2 : H -> inter X V empty.
@@ -143,7 +143,7 @@ Qed.
 Lemma isGram5 : Mots X -> inter X V empty -> dans S V -> Regles X V R -> H.
 intros.
 red in |- *; red in |- *.
-auto with v62.
+auto.
 Qed.
 
 
@@ -153,7 +153,7 @@ End Easy_lemma_isGram.
 Lemma Regles_R :
  forall X V R R' : Ensf, inclus R' R -> Regles X V R -> Regles X V R'.
 unfold Regles in |- *.
-auto with v62.
+auto.
 Qed.
 
 Lemma Regles_V :
@@ -164,10 +164,10 @@ elim (Regles_X_V_R x dans_x_R).
 intros A dans_A_V temp; elim temp; clear temp.
 intros B egal_B inmonoid_B.
 exists A.
-auto with v62.
+auto.
 exists B.
 assumption.
-apply inmonoid_inclus with (union X V); auto with v62.
+apply inmonoid_inclus with (union X V); auto.
 Qed.
 
 
@@ -184,14 +184,14 @@ intuition.
 (*	Intro egal_x_couple.*)
 	exists a.
 		assumption.
-		exists u; auto with v62.
+		exists u; auto.
 (**)apply dans_add; assumption.
 Qed.
 
 Lemma Regles_add2 :
  forall (X V R : Ensf) (a : Elt), Regles X V R -> Regles X (add a V) R.
 intros.
-apply Regles_V with V; auto with v62.
+apply Regles_V with V; auto.
 Qed.
 
 
@@ -201,7 +201,7 @@ Lemma Regles_union :
 
 unfold Regles in |- *.
 intros X V R R' R_R R_R' x dans_x_union.
-cut (dans x R \/ dans x R'); auto with v62.
+cut (dans x R \/ dans x R'); auto.
 intros [HR| HR']; auto.
 Qed.
 
@@ -223,7 +223,7 @@ Qed.
 Lemma isGram_inclus3 :
  forall (X V R : Ensf) (S a : Elt), isGram X V (add a R) S -> isGram X V R S.
 intros X V R S a isGram_X_V_a_R_S.
-apply isGram_inclus2 with (add a R); auto with v62.
+apply isGram_inclus2 with (add a R); auto.
 Qed.
 
 
@@ -245,15 +245,15 @@ Inductive Derive (R : Ensf) : Word -> Word -> Prop :=
       forall (u v : Word) (x : Elt),
       Derive R u v -> Derive R (cons x u) (cons x v).
 
-Hint Resolve Derive1: v62.
-Hint Resolve Derive2: v62.
+Hint Resolve Derive1.
+Hint Resolve Derive2.
 
 
 Lemma Derive_inclus :
  forall (R1 R2 : Ensf) (u v : Word),
  inclus R1 R2 -> Derive R1 u v -> Derive R2 u v.
 intros R1 R2 u v inclus_R1_R2 Der_R1.
-elim Der_R1; auto with v62.
+elim Der_R1; auto.
 Qed.
 
 
@@ -283,10 +283,10 @@ elim Der_x_y; prolog [ ex_intro2 refl_equal or_intror or_introl ] 8.
 
  Intros u v x0 Der_u_v Der_inv_u_v.
  Simpl; Right.
- Exists v; Trivial with v62.*)
+ Exists v; Trivial .*)
 Qed.
 
-Hint Resolve Derive_inv1: v62.
+Hint Resolve Derive_inv1.
 
 Lemma Derive_inv2 :
  forall (R : Ensf) (x y : Word),
@@ -309,7 +309,7 @@ intros x0 w Hyp_rec.
 unfold Derive_inv in |- *.
 (*Simpl.*)
 exists x0.
-exists w; trivial with v62.
+exists w; trivial.
 Qed.
 
 
@@ -361,13 +361,13 @@ Qed.
 
 Definition Derivestar (R : Ensf) := Rstar Word (Derive R).
 
-Hint Unfold Derivestar: v62.
+Hint Unfold Derivestar.
 
 Lemma Derivestar_refl : forall (R : Ensf) (u : Word), Derivestar R u u.
-auto with v62.
+auto.
 Qed.
 
-Hint Resolve Derivestar_refl: v62.
+Hint Resolve Derivestar_refl.
 
 Lemma Derivestar_R :
  forall (R : Ensf) (u v w : Word),
@@ -389,7 +389,7 @@ prolog [ Rstar_inv ] 6.
 Apply Rstar_inv;Assumption.*)
 Qed.
 
-Hint Resolve Derivestar_inv: v62.
+Hint Resolve Derivestar_inv.
 
 
 Lemma Derivestar_inclus :
@@ -399,7 +399,7 @@ intros R1 R2 u v inclus_R1_R2 Der_R1.
 unfold Derivestar, Rstar in Der_R1.
 pattern u, v in |- *.
 apply Der_R1.
-	auto with v62.
+	auto.
 	intros; prolog [ Derive_inclus Derivestar_R ] 3.
 	(*Intros a b c Der_a_b Der_b_c.
 	Apply Derivestar_R with b.
@@ -418,14 +418,14 @@ Lemma LG_inv :
  forall (X V R : Ensf) (S : Elt) (w : Word), LG X V R S w -> inmonoid X w.
 unfold LG in |- *.
 intros.
-elim H; auto with v62.
+elim H; auto.
 Qed.
 
 (*Pour toute grammaire (X,V,R,S), (LG X V R S) est un langage *)
 
 Lemma LG_langage :
  forall (X V R : Ensf) (S : Elt), isGram X V R S -> islanguage X (LG X V R S).
-intros; red in |- *; intros; elim H0; auto with v62.
+intros; red in |- *; intros; elim H0; auto.
 Qed.
 
 

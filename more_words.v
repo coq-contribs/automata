@@ -41,28 +41,28 @@
 Require Import Ensf.
 Require Import Words.
 
-Hint Unfold eqwordset : v62.
+Hint Unfold eqwordset .
 
 Definition l_inclus (l1 l2 : wordset) : Prop := forall w : Word, l1 w -> l2 w.
 
-Hint Unfold l_inclus: v62.
+Hint Unfold l_inclus.
 
 Lemma refl_l_inclus : forall l1 : wordset, l_inclus l1 l1.
-auto with v62.
+auto.
 Qed.
-Hint Resolve refl_l_inclus: v62.
+Hint Resolve refl_l_inclus.
 
 Lemma trans_l_inclus :
  forall l1 l2 l3 : wordset,
  l_inclus l1 l2 -> l_inclus l2 l3 -> l_inclus l1 l3.
-auto with v62.
+auto.
 Qed.
 
 
 Definition l_egal (l1 l2 : wordset) : Prop :=
   l_inclus l1 l2 /\ l_inclus l2 l1.
 
-Hint Unfold l_egal: v62.
+Hint Unfold l_egal.
 
 (*predicat equivalent a eqwordset*)
 (*demonstration :                *)
@@ -72,16 +72,16 @@ Lemma equiv_l_egal_eqwordset :
 intros a b.
 unfold iff in |- *.
 split.
-intro Hyp; elim Hyp; auto with v62.
+intro Hyp; elim Hyp; auto.
 intros Hyp.
-split; unfold l_inclus in |- *; intro w; elim (Hyp w); auto with v62.
+split; unfold l_inclus in |- *; intro w; elim (Hyp w); auto.
 Qed.
 
 
 Lemma refl_l_egal : forall l1 : wordset, l_egal l1 l1.
-auto with v62.
+auto.
 Qed.
-Hint Resolve refl_l_egal: v62.
+Hint Resolve refl_l_egal.
 
 
 
@@ -102,7 +102,7 @@ Lemma wef_append :
 intros u v.
 elim u.
 
-	trivial with v62.
+	trivial.
 
 	unfold wef in |- *.
 	intros x w H.
@@ -116,7 +116,7 @@ Qed.
 Lemma wef_nil : forall a : Word, wef a = nil -> a = nil.
 intro a.
 case a.
-auto with v62.
+auto.
 
 unfold wef in |- *; simpl in |- *; intros x w H; discriminate H.
 
@@ -137,19 +137,19 @@ case b.
 	simpl in |- *; intros x w H.
 	exists x.
 	exists w.
-		trivial with v62.
-		injection H; auto with v62.
+		trivial.
+		injection H; auto.
 
 Qed.
 
 End more_about_words.
 
-Hint Resolve wef_cons: v62.
+Hint Resolve wef_cons.
 
 Lemma Append_assoc :
  forall a b c : Word, Append a (Append b c) = Append (Append a b) c.
 intros a b c. 
 unfold Append in |- *.
-elim a; auto with v62.
+elim a; auto.
 Qed.
-Hint Resolve Append_assoc: v62.
+Hint Resolve Append_assoc.

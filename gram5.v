@@ -86,27 +86,27 @@ Let Su := snd C'.
 
 Hypothesis Grammaire1 : isGram X V1 R1 S1.
 Hypothesis Grammaire2 : isGram X V2 R2 S2.
-Hint Resolve Grammaire1: v62.
-Hint Resolve Grammaire2: v62.
+Hint Resolve Grammaire1.
+Hint Resolve Grammaire2.
 
 
 Lemma Mots_X : Mots X.
 apply isGram1 with V1 R1 S1.
-auto with v62.
+auto.
 Qed.
-Hint Resolve Mots_X: v62.
+Hint Resolve Mots_X.
 
 Lemma int_X_V1_empty : inter X V1 empty.
 apply isGram2 with R1 S1.
-auto with v62.
+auto.
 Qed.
-Hint Resolve int_X_V1_empty: v62.
+Hint Resolve int_X_V1_empty.
 
 Lemma int_X_V2_empty : inter X V2 empty.
 apply isGram2 with R2 S2.
-auto with v62.
+auto.
 Qed.
-Hint Resolve int_X_V2_empty: v62.
+Hint Resolve int_X_V2_empty.
 
 
 
@@ -124,9 +124,9 @@ unfold Id, injproducg in |- *.
 simpl in |- *.
 intros x dans_x_X.
 apply extension_out.
-apply inter_dans with X; auto with v62.
+apply inter_dans with X; auto.
 Qed.
-Hint Resolve Id_injproducg1: v62.
+Hint Resolve Id_injproducg1.
 
 
 Lemma Id_injproducd2 : forall x : Elt, dans x X -> injproducd V2 x = x :>Elt.
@@ -134,9 +134,9 @@ unfold Id, injproducd in |- *.
 simpl in |- *.
 intros x dans_x_X.
 apply extension_out.
-apply inter_dans with X; auto with v62.
+apply inter_dans with X; auto.
 Qed.
-Hint Resolve Id_injproducd2: v62.
+Hint Resolve Id_injproducd2.
 
 Lemma N_dans_S_X : ~ dans S' X.
 red in |- *.
@@ -147,7 +147,7 @@ elimtype (exists w : Word, word w = S').
 	discriminate.
 apply Mots_X; assumption.
 Qed.
-Hint Resolve N_dans_S_X: v62.
+Hint Resolve N_dans_S_X.
 
 Lemma injproducg_V1 :
  forall x : Elt, dans x V1 -> injproducg V1 x = injgauche x.
@@ -155,18 +155,18 @@ intros x dans_x_V1.
 unfold injproducg, extension in |- *.
 elim (extension_spec V1 injgauche x).
 intros x0 temp; elim temp; clear temp; intro temp; elim temp; clear temp.
-	auto with v62.
+	auto.
 	intros.
 	absurd (dans x V1); assumption.
 Qed.
-Hint Resolve injproducg_V1: v62.
+Hint Resolve injproducg_V1.
 
 
 Lemma map_injproducg_V1 : map (injproducg V1) V1 = map injgauche V1 :>Ensf.
 apply map_egal.
-auto with v62.
+auto.
 Qed.
-Hint Resolve map_injproducg_V1: v62.
+Hint Resolve map_injproducg_V1.
 
 Lemma injproducd_V2 :
  forall x : Elt, dans x V2 -> injproducd V2 x = injdroite x.
@@ -174,18 +174,18 @@ intros x dans_x_V2.
 unfold injproducd, extension in |- *.
 elim (extension_spec V2 injdroite x).
 intros x0 temp; elim temp; clear temp; intro temp; elim temp; clear temp.
-	auto with v62.
+	auto.
 	intros.
 	absurd (dans x V2); assumption.
 Qed.
-Hint Resolve injproducd_V2: v62.
+Hint Resolve injproducd_V2.
 
 
 Lemma map_injproducd_V2 : map (injproducd V2) V2 = map injdroite V2 :>Ensf.
 apply map_egal.
-auto with v62.
+auto.
 Qed.
-Hint Resolve map_injproducd_V2: v62.
+Hint Resolve map_injproducd_V2.
 
 
 
@@ -199,14 +199,14 @@ intros dans_x_V1 S_egal.
 absurd (S' = couple x zero).
 unfold S', zero in |- *.
 discriminate.
-auto with v62.
+auto.
 apply (dans_map (fun e : Elt => couple e zero)).
 assumption.
 unfold V1' in |- *.
 simpl in |- *.
-auto with v62.
+auto.
 Qed.
-Hint Resolve N_dans_S_V1': v62.
+Hint Resolve N_dans_S_V1'.
 
 
 Lemma N_dans_S_V2' : ~ dans S' V2'.
@@ -220,15 +220,15 @@ intros dans_x_V2 S_egal.
 absurd (S' = couple x un).
 unfold S', zero in |- *.
 discriminate.
-auto with v62.
+auto.
 apply (dans_map (fun e : Elt => couple e un)).
 assumption.
 unfold V2' in |- *.
 simpl in |- *.
-auto with v62.
+auto.
 Qed.
 
-Hint Resolve N_dans_S_V2': v62.
+Hint Resolve N_dans_S_V2'.
 
 Lemma is_mono_u_X_V1_injproducg_V1 : is_mono (union X V1) (injproducg V1).
 unfold is_mono in |- *.
@@ -240,8 +240,8 @@ replace (injproducg V1 x) with x.
 elimtype (dans y X \/ dans y V1).
 intros dans_y.
 replace (injproducg V1 y) with y.
-auto with v62.
-apply sym_equal; auto with v62.
+auto.
+apply sym_equal; auto.
 
 intros dans_y.
 replace (injproducg V1 y) with (injgauche y).
@@ -252,10 +252,10 @@ absurd (word x0 = couple y zero).
 	discriminate.
 	rewrite egal_x; assumption.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
-auto with v62.
-apply sym_equal; auto with v62.
+auto.
+apply sym_equal; auto.
 
 intro dans_x.
 replace (injproducg V1 x) with (injgauche x).
@@ -269,7 +269,7 @@ absurd (word x0 = couple x zero).
 	discriminate.
 	rewrite egal2_y; assumption.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
 intro.
 replace (injproducg V1 y) with (injgauche y).
@@ -277,15 +277,15 @@ unfold injgauche in |- *.
 intros.
 apply couple_couple_inv1 with zero zero; assumption.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
-auto with v62.
+auto.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
-auto with v62.
+auto.
 Qed.
-Hint Resolve is_mono_u_X_V1_injproducg_V1: v62.
+Hint Resolve is_mono_u_X_V1_injproducg_V1.
 
 
 Lemma is_mono_u_X_V2_injproducd_V2 : is_mono (union X V2) (injproducd V2).
@@ -298,8 +298,8 @@ replace (injproducd V2 x) with x.
 elimtype (dans y X \/ dans y V2).
 intros dans_y.
 replace (injproducd V2 y) with y.
-auto with v62.
-apply sym_equal; auto with v62.
+auto.
+apply sym_equal; auto.
 
 intros dans_y.
 replace (injproducd V2 y) with (injdroite y).
@@ -310,10 +310,10 @@ absurd (word x0 = couple y un).
 	discriminate.
 	rewrite egal_x; assumption.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
-auto with v62.
-apply sym_equal; auto with v62.
+auto.
+apply sym_equal; auto.
 
 intro dans_x.
 replace (injproducd V2 x) with (injdroite x).
@@ -327,7 +327,7 @@ absurd (word x0 = couple x un).
 	discriminate.
 	rewrite egal2_y; assumption.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
 intro.
 replace (injproducd V2 y) with (injdroite y).
@@ -335,15 +335,15 @@ unfold injdroite in |- *.
 intros.
 apply couple_couple_inv1 with un un; assumption.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
-auto with v62.
+auto.
 
-apply sym_equal; auto with v62.
+apply sym_equal; auto.
 
-auto with v62.
+auto.
 Qed.
-Hint Resolve is_mono_u_X_V2_injproducd_V2: v62.
+Hint Resolve is_mono_u_X_V2_injproducd_V2.
 
 
 
@@ -352,17 +352,17 @@ pattern X at 2 in |- *.
 replace X with X1'.
 unfold X1', V1', R1', S1', GGG1, GG1, G1 in |- *.
 apply egal_LG.
-auto with v62.
-auto with v62.
-red in |- *; auto with v62.
+auto.
+auto.
+red in |- *; auto.
 
 unfold X1' in |- *; simpl in |- *.
 apply map_Id.
 red in |- *.
-auto with v62.
+auto.
 
 Qed.
-Hint Resolve egal_LG_1_1': v62.
+Hint Resolve egal_LG_1_1'.
 
 
 Lemma egal_LG_2_2' : l_egal (LG X V2 R2 S2) (LG X V2' R2' S2').
@@ -371,17 +371,17 @@ replace X with X2'.
 
 unfold X2', V2', R2', S2', GGG2, GG2, G2 in |- *.
 apply egal_LG.
-auto with v62.
-auto with v62.
-red in |- *; auto with v62.
+auto.
+auto.
+red in |- *; auto.
 
 unfold X2' in |- *; simpl in |- *.
 apply map_Id.
 red in |- *.
-auto with v62.
+auto.
 
 Qed.
-Hint Resolve egal_LG_2_2': v62.
+Hint Resolve egal_LG_2_2'.
 
 
 
@@ -389,14 +389,14 @@ Lemma egal_X_X1' : X1' = X :>Ensf.
 unfold X1' in |- *. simpl in |- *.
 apply map_Id.
 red in |- *.
-auto with v62.
+auto.
 Qed.
 
 Lemma egal_X_X2' : X2' = X :>Ensf.
 unfold X2' in |- *. simpl in |- *.
 apply map_Id.
 red in |- *.
-auto with v62.
+auto.
 Qed.
 
 
@@ -404,38 +404,38 @@ Lemma Grammaire1' : isGram X V1' R1' S1'.
 rewrite <- egal_X_X1'.
 unfold X1', V1', R1', S1', GGG1, GG1, G1 in |- *.
 apply image_isGram.
-	auto with v62.
+	auto.
 
 	change (Mots X1') in |- *.
 	rewrite egal_X_X1'.
-	auto with v62.
+	auto.
 
-	apply inter_Xim_Vim_empty; auto with v62.
+	apply inter_Xim_Vim_empty; auto.
 
 Qed.
-Hint Resolve Grammaire1': v62.
+Hint Resolve Grammaire1'.
 
 
 Lemma Grammaire2' : isGram X V2' R2' S2'.
 rewrite <- egal_X_X2'.
 unfold X2', V2', R2', S2', GGG2, GG2, G2 in |- *.
 apply image_isGram.
-	auto with v62.
+	auto.
 
 	change (Mots X2') in |- *.
 	rewrite egal_X_X2'.
-	auto with v62.
+	auto.
 
-	apply inter_Xim_Vim_empty; auto with v62.
+	apply inter_Xim_Vim_empty; auto.
 
 Qed.
-Hint Resolve Grammaire2': v62.
+Hint Resolve Grammaire2'.
 
 Lemma inter_V1'_V2'_empty : inter V1' V2' empty.
 unfold V1', V2' in |- *; simpl in |- *.
 unfold inter in |- *.
-split; [ auto with v62 | split ].
-auto with v62.
+split; [ auto | split ].
+auto.
 
 replace (map (injproducg V1) V1) with (map injgauche V1).
 replace (map (injproducd V2) V2) with (map injdroite V2).
@@ -450,19 +450,19 @@ red in |- *.
 intro.
 cut (0 = 1 :>nat).
 change (0 <> 1 :>nat) in |- *.
-auto with v62.
+auto.
 change (natural_inv (natural 0) = natural_inv (natural 1) :>nat) in |- *.
 apply (f_equal natural_inv); assumption.
 apply couple_couple_inv2 with x1 x2.
 replace (couple x1 zero) with x.
-auto with v62.
+auto.
 apply dans_map; assumption.
 apply dans_map; assumption.
-auto with v62.
-auto with v62.
+auto.
+auto.
 Qed.
 
-Hint Resolve inter_V1'_V2'_empty: v62.
+Hint Resolve inter_V1'_V2'_empty.
 
 
 
@@ -470,14 +470,14 @@ Lemma egal_LG_u_1'_2' :
  l_egal (LG X Vu Ru S') (lunion (LG X V1' R1' S1') (LG X V2' R2' S2')).
 unfold Ru, Vu, C', Gim in |- *.
 apply Gunion_disj_LG.
-auto with v62.
-auto with v62.
-auto with v62.
-auto with v62.
-auto with v62.
-auto with v62.
+auto.
+auto.
+auto.
+auto.
+auto.
+auto.
 Qed.
-Hint Resolve egal_LG_u_1'_2': v62.
+Hint Resolve egal_LG_u_1'_2'.
 
 
 
@@ -515,13 +515,13 @@ change
   (l_egal (LG X Vu Ru S') (lunion (LG X V1' R1' S1') (LG X V2' R2' S2')))
  in |- *.
 
-auto with v62.
+auto.
 
 change (l_egal (LG X V2 R2 S2) (LG X V2' R2' S2')) in |- *.
-auto with v62.
+auto.
 
 change (l_egal (LG X V1 R1 S1) (LG X V1' R1' S1')) in |- *.
-auto with v62.
+auto.
 
 Qed.
 
