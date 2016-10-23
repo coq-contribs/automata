@@ -65,12 +65,12 @@ elim H0; clear H0.
 intros H0 H1; elim H1; clear H1; intros H1 H2.
 elim H; clear H.
 intros H3 H4; elim H4; clear H4; intros H4 H5.
-split; auto with v62.
+split; auto.
 split.
 apply empty_inclus.
 intros.
-cut (dans x b \/ dans x c); auto with v62.
-intro H7; elim H7; auto with v62.
+cut (dans x b \/ dans x c); auto.
+intro H7; elim H7; auto.
 Qed.
 
 Lemma inter_union :
@@ -82,11 +82,11 @@ elim H0; clear H0.
 intros H0 H1; elim H1; clear H1; intros H1 H2.
 elim H; clear H.
 intros H3 H4; elim H4; clear H4; intros H4 H5.
-split; auto with v62.
-split; auto with v62.
+split; auto.
+split; auto.
 intros.
-cut (dans x A \/ dans x B); auto with v62.
-intro H7; elim H7; auto with v62.
+cut (dans x A \/ dans x B); auto.
+intro H7; elim H7; auto.
 Qed.
 
 Lemma inter_dans :
@@ -95,14 +95,14 @@ unfold inter in |- *.
 intros.
 elim H; clear H; intros H Ht; elim Ht; clear Ht; intros H1 H2.
 red in |- *; intro.
-cut (dans x empty); auto with v62.
+cut (dans x empty); auto.
 intro.
-apply dans_empty_imp_P with x; auto with v62.
+apply dans_empty_imp_P with x; auto.
 Qed.
 
 Lemma sym_inter : forall A B C : Ensf, inter A B C -> inter B A C.
 unfold inter in |- *.
 intros.
 elim H; clear H; intros H Ht; elim Ht; clear Ht; intros H0 H1.
-auto with v62.
+auto.
 Qed.

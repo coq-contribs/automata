@@ -65,4 +65,4 @@ Axiom
     forall (X : Ensf) (a b : Word), inmonoid X (Append a b) -> inmonoid X b.
 
 
-Hint Resolve dans_add: v62.
+Hint Resolve dans_add.

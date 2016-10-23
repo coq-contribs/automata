@@ -90,24 +90,24 @@ intros x y x0.
 simple induction b.
 simpl in |- *.
 intro.
-apply (dans_empty_imp_P (couple x y)); auto with v62.
+apply (dans_empty_imp_P (couple x y)); auto.
 
 intros a b0 H.
 simpl in |- *.
 intro.
 cut (couple x0 a = couple x y :>Elt \/ dans (couple x y) (singleprod x0 b0)).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
 intro H1.
 injection H1; intros.
-split; auto with v62.
-rewrite H2; auto with v62.
+split; auto.
+rewrite H2; auto.
 
 intro.
-cut (x = x0 :>Elt /\ dans y b0); auto with v62.
+cut (x = x0 :>Elt /\ dans y b0); auto.
 intro H2; elim H2; clear H2.
 intros.
-split; auto with v62.
+split; auto.
 Qed.
 
 (*  On peut ensuite en deduire que si (x,y) est dans AxB alors 		*)
@@ -121,27 +121,27 @@ simple induction a.
 intro b.
 simpl in |- *.
 intro.
-apply (dans_empty_imp_P (couple x y)); auto with v62.
+apply (dans_empty_imp_P (couple x y)); auto.
 
 intros a0 b H b0.
 simpl in |- *.
 intro.
 cut
  (dans (couple x y) (singleprod a0 b0) \/ dans (couple x y) (prodcart b b0)).
-2: apply dans_union; auto with v62.
+2: apply dans_union; auto.
 intro H1; elim H1; clear H1.
 intro H1.
 cut (x = a0 :>Elt /\ dans y b0).
-2: apply dans_singleprod; auto with v62.
+2: apply dans_singleprod; auto.
 intro H2; elim H2; clear H2.
 intros.
 rewrite H2.
-split; auto with v62.
+split; auto.
 intro.
-cut (dans x b /\ dans y b0); auto with v62.
+cut (dans x b /\ dans y b0); auto.
 intro H2; elim H2; clear H2.
 intros.
-split; auto with v62.
+split; auto.
 Qed.
 
 (*  Plus facile : l'inverse...						*)
@@ -152,15 +152,15 @@ Lemma dans_single :
 intros x y.
 simple induction a.
 intro.
-apply (dans_empty_imp_P y); auto with v62.
+apply (dans_empty_imp_P y); auto.
 intros a0 b H H1.
 cut (a0 = y :>Elt \/ dans y b).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H2; elim H2; clear H2.
 intro.
 simpl in |- *.
-rewrite H0; auto with v62.
-simpl in |- *; auto with v62.
+rewrite H0; auto.
+simpl in |- *; auto.
 Qed.
 
 Lemma coupl2_inv :
@@ -169,24 +169,24 @@ Lemma coupl2_inv :
 intros x y.
 simple induction a.
 intros b H.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 
 intros a0 b H b0 H0.
 cut (a0 = x :>Elt \/ dans x b).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 simpl in |- *.
 intro H1; elim H1; clear H1.
 intros H1 H2.
 apply dans_union_inv.
 left.
 rewrite H1.
-apply dans_single; auto with v62.
+apply dans_single; auto.
 intros H1 H2.
 apply dans_union_inv.
 right.
-auto with v62.
+auto.
 Qed.
-Hint Resolve coupl2_inv: v62.
+Hint Resolve coupl2_inv.
 
 (*  De meme on commence ici par monter que si x est dans		*)
 (*  (singleprod x0 b) alors x est de la forme (x0,y) avec y dans b	*)
@@ -197,23 +197,23 @@ Lemma dans_singleprod2 :
 intros x x0.
 simple induction b.
 intro.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 intros a b0 H.
 simpl in |- *.
 intro.
 cut (couple x0 a = x :>Elt \/ dans x (singleprod x0 b0)).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
 intro.
-exists a; auto with v62.
+exists a; auto.
 intro.
-cut (exists y : Elt, x = couple x0 y /\ dans y b0); auto with v62.
+cut (exists y : Elt, x = couple x0 y /\ dans y b0); auto.
 intro H2; elim H2; clear H2.
 intros.
 exists x1.
 elim H2; clear H2.
 intros.
-split; auto with v62.
+split; auto.
 Qed.
 
 (*  On peut ensuite en deduire que si x est dans AxB alors x est de la	*)
@@ -228,28 +228,28 @@ simple induction a.
 intro b.
 simpl in |- *.
 intros x H.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 
 intros a0 b H b0 x.
 simpl in |- *.
 intro.
-cut (dans x (singleprod a0 b0) \/ dans x (prodcart b b0)); auto with v62.
+cut (dans x (singleprod a0 b0) \/ dans x (prodcart b b0)); auto.
 intro H1; elim H1; clear H1.
 intro.
 cut (exists y : Elt, x = couple a0 y /\ dans y b0).
-2: apply dans_singleprod2; auto with v62.
+2: apply dans_singleprod2; auto.
 intro H2; elim H2; clear H2.
 intros x0 H2.
 exists a0.
 exists x0.
 elim H2; clear H2.
 intros.
-split; auto with v62.
+split; auto.
 intro.
 cut
  (exists x1 : Elt,
     (exists x2 : Elt, dans x1 b /\ dans x2 b0 /\ x = couple x1 x2));
- auto with v62.
+ auto.
 intro H2; elim H2; clear H2.
 intros x0 H2; elim H2; clear H2.
 intros x1 H2; elim H2; clear H2.
@@ -257,5 +257,5 @@ intros H2 H3; elim H3; clear H3.
 intros H4 H5.
 exists x0.
 exists x1.
-split; auto with v62.
+split; auto.
 Qed.

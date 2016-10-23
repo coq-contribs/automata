@@ -61,7 +61,7 @@ Lemma automate_def1 :
 intros q qd qa d H.
 elim H.
 intros H1 H0; elim H0; clear H0.
-auto with v62.
+auto.
 Qed.
 
 Lemma automate_def2 :
@@ -69,7 +69,7 @@ Lemma automate_def2 :
 intros q qd qa d H.
 elim H.
 intros H1 H0; elim H0; clear H0.
-auto with v62.
+auto.
 Qed.
 
 Lemma automate_def3 :
@@ -77,7 +77,7 @@ Lemma automate_def3 :
 intros q qd qa d H.
 elim H.
 intros H1 H0; elim H0; clear H0.
-auto with v62.
+auto.
 Qed.
 
 (*									*)
@@ -97,7 +97,7 @@ Inductive chemin : Elt -> Elt -> Ensf -> Ensf -> Word -> Prop :=
       dans a alph ->
       dans (couple e (couple a e1)) d -> chemin e e2 q d (cons a w).
 
-Hint Resolve chemin_nil: v62.
+Hint Resolve chemin_nil.
 
 (*  On definit le meme predicat d'une autre facon, qui sera plus utile	*)
 (*  par la suite							*)
@@ -121,23 +121,23 @@ Lemma Chemin_chemin :
 intros e1 e2 q d.
 simple induction w.
 intro.
-cut (dans e1 q /\ e1 = e2 :>Elt); auto with v62.
+cut (dans e1 q /\ e1 = e2 :>Elt); auto.
 intro H0; elim H0; clear H0. 
-intros; apply chemin_nil; auto with v62.
+intros; apply chemin_nil; auto.
 intros x w0 H H0.
 cut
  (exists e : Elt,
     chemin e e2 q d w0 /\
     dans e1 q /\ dans x alph /\ dans (couple e1 (couple x e)) d);
- auto with v62.
+ auto.
 intro H1; elim H1.
 intros e H2; elim H2; clear H1 H2.
 intros H1 H2; elim H2; clear H2.
 intros H2 H3; elim H3; clear H3.
 intros.
-apply chemin_cons with e; auto with v62.
+apply chemin_cons with e; auto.
 Qed.
-Hint Resolve Chemin_chemin: v62.
+Hint Resolve Chemin_chemin.
 
 
 Lemma chemin_Chemin :
@@ -145,13 +145,13 @@ Lemma chemin_Chemin :
  chemin e1 e2 q d w -> Chemin e1 e2 q d w.
 intros e1 e2 q d w H; elim H; clear H.
 intros.
-red in |- *; simpl in |- *; auto with v62.
+red in |- *; simpl in |- *; auto.
 intros.
 red in |- *; simpl in |- *.
 exists e0.
-auto with v62.
+auto.
 Qed.
-Hint Resolve chemin_Chemin: v62.
+Hint Resolve chemin_Chemin.
 
 
 (*  									*)
@@ -178,21 +178,21 @@ Lemma dans_e1_q :
 intros q d.
 simple induction w.
 intros.
-cut (Chemin e1 e2 q d nil); auto with v62.
+cut (Chemin e1 e2 q d nil); auto.
 intro.
-cut (dans e1 q /\ e1 = e2 :>Elt); auto with v62.
-intro Ht; elim Ht; auto with v62.
+cut (dans e1 q /\ e1 = e2 :>Elt); auto.
+intro Ht; elim Ht; auto.
 intros x w0 H e1 e2 H0.
-cut (Chemin e1 e2 q d (cons x w0)); auto with v62.
+cut (Chemin e1 e2 q d (cons x w0)); auto.
 intro.
 cut
  (exists e : Elt,
     chemin e e2 q d w0 /\
     dans e1 q /\ dans x alph /\ dans (couple e1 (couple x e)) d);
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 intros e Ht; elim Ht; clear Ht.
-intros H2 Ht; elim Ht; auto with v62.
+intros H2 Ht; elim Ht; auto.
 Qed.
 
 Lemma dans_e2_q :
@@ -201,24 +201,24 @@ Lemma dans_e2_q :
 intros q d.
 simple induction w.
 intros.
-cut (Chemin e1 e2 q d nil); auto with v62.
+cut (Chemin e1 e2 q d nil); auto.
 intro.
-cut (dans e1 q /\ e1 = e2 :>Elt); auto with v62.
-intro Ht; elim Ht; auto with v62.
+cut (dans e1 q /\ e1 = e2 :>Elt); auto.
+intro Ht; elim Ht; auto.
 intros.
-rewrite <- H2; auto with v62.
+rewrite <- H2; auto.
 intros x w0 H e1 e2 H0.
-cut (Chemin e1 e2 q d (cons x w0)); auto with v62.
+cut (Chemin e1 e2 q d (cons x w0)); auto.
 intro.
 cut
  (exists e : Elt,
     chemin e e2 q d w0 /\
     dans e1 q /\ dans x alph /\ dans (couple e1 (couple x e)) d);
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 intros e Ht; elim Ht; clear Ht.
 intros H2 Ht.  
-apply (H e e2); auto with v62.
+apply (H e e2); auto.
 Qed.
 
 (*									*)
@@ -230,21 +230,21 @@ Lemma Cheminmonoid :
  automate q qd qa d ->
  forall e1 e2 : Elt, chemin e1 e2 q d w -> inmonoid alph w.
 simple induction w.
-auto with v62.
+auto.
 intros x w0 H q qd qa d H0 e1 e2 H1.
-cut (Chemin e1 e2 q d (cons x w0)); auto with v62.
+cut (Chemin e1 e2 q d (cons x w0)); auto.
 intro.
 cut
  (exists e : Elt,
     chemin e e2 q d w0 /\
     dans e1 q /\ dans x alph /\ dans (couple e1 (couple x e)) d);
- auto with v62.
+ auto.
 intro H3; elim H3; clear H3.
 intros e H3; elim H3; clear H3.
 intros H3 H4; elim H4; clear H4.
 intros H4 H5; elim H5; clear H5; intros.
-apply inmonoid_cons; auto with v62.
-apply (H q qd qa d H0 e e2); auto with v62.
+apply inmonoid_cons; auto.
+apply (H q qd qa d H0 e e2); auto.
 Qed.
 
 (*									*)
@@ -259,7 +259,7 @@ Lemma chemin_lettre :
  dans e2 q ->
  dans (couple e1 (couple x e2)) d -> chemin e1 e2 q d (cons x nil).
 intros.
-apply chemin_cons with e2; auto with v62. 
+apply chemin_cons with e2; auto. 
 Qed.
 
 (*									*)
@@ -274,7 +274,7 @@ Lemma automate_A_def2 :
  forall q qd qa d : Ensf, automate_A q qd qa d -> inclus qd q.
 intros.
 elim H.
-intros H0 Ht; elim Ht; auto with v62.
+intros H0 Ht; elim Ht; auto.
 Qed.
 
 (*									*)
@@ -297,7 +297,7 @@ Inductive chemin_A (q d : Ensf) : Elt -> Elt -> Word -> Prop :=
       chemin_A q d e e2 w ->
       dans e1 q ->
       dans (couple e1 (couple epsilon e)) d -> chemin_A q d e1 e2 w.
-Hint Resolve chemin_A_nil: v62.
+Hint Resolve chemin_A_nil.
 
 (*  Inversion de la definition...					*)
 
@@ -329,13 +329,13 @@ Lemma chemin_A_d1_d2 :
  chemin_A q d1 e1 e2 w -> inclus d1 d2 -> chemin_A q d2 e1 e2 w.
 intros q d d2 w e1 e2 H.
 elim H; clear H.
-auto with v62.
+auto.
 
 intros.
-apply chemin_A_cons with e; auto with v62.
+apply chemin_A_cons with e; auto.
 
 intros.
-apply chemin_A_epsilon with e; auto with v62.
+apply chemin_A_epsilon with e; auto.
 Qed.
 
 (*  De meme pour deux ensembles d'etats q1 et q2 tesl que q1 est inclus	*)
@@ -347,13 +347,13 @@ Lemma chemin_A_q1_q2 :
 intros q1 q2 d w e1 e2 H.
 elim H; clear H.
 
-auto with v62.
+auto.
 
 intros.
-apply chemin_A_cons with e; auto with v62.
+apply chemin_A_cons with e; auto.
 
 intros.
-apply chemin_A_epsilon with e; auto with v62.
+apply chemin_A_epsilon with e; auto.
 Qed.
 
 
@@ -365,10 +365,10 @@ Lemma chemin_chemin_A :
  chemin e1 e2 q d w -> chemin_A q d e1 e2 w.
 intros q d w e1 e2 H. 
 elim H; clear H.
-auto with v62.
+auto.
 
 intros.
-apply chemin_A_cons with e0; auto with v62.
+apply chemin_A_cons with e0; auto.
 Qed.
 
 (*									*)
@@ -384,18 +384,18 @@ intros e1 e e2 q d w1 w2 H.
 elim H.
 
 intros e0 e3 H0 H1 H2.
-simpl in |- *; rewrite H1; auto with v62.
+simpl in |- *; rewrite H1; auto.
 
 intros.
 simpl in |- *.
-cut (chemin_A q d e3 e2 (Append w w2)); auto with v62.
+cut (chemin_A q d e3 e2 (Append w w2)); auto.
 intro.
-apply chemin_A_cons with e3; auto with v62.
+apply chemin_A_cons with e3; auto.
 
 intros.
-cut (chemin_A q d e3 e2 (Append w w2)); auto with v62.
+cut (chemin_A q d e3 e2 (Append w w2)); auto.
 intro.
-apply chemin_A_epsilon with e3; auto with v62.
+apply chemin_A_epsilon with e3; auto.
 Qed.
 
 (*									*)
@@ -406,14 +406,14 @@ Lemma dansA_e1_q :
  forall (q d : Ensf) (w : Word) (e1 e2 : Elt),
  chemin_A q d e1 e2 w -> dans e1 q.
 intros.
-elim H; auto with v62.
+elim H; auto.
 Qed.
 
 Lemma dansA_e2_q :
  forall (q d : Ensf) (w : Word) (e1 e2 : Elt),
  chemin_A q d e1 e2 w -> dans e2 q.
 intros.
-elim H; auto with v62.
+elim H; auto.
 intros e0 e3 H0 H1.
 rewrite <- H1.
 assumption.
@@ -429,7 +429,7 @@ Lemma cheminA_monoid :
  automate_A q qd qaA dA ->
  forall e1 e2 : Elt, chemin_A q dA e1 e2 w -> inmonoid alph w.
 intros.
-elim H0; auto with v62.
+elim H0; auto.
 Qed.
 
 
@@ -444,11 +444,11 @@ Lemma chemin_A2_cons_inv : (q,dA:Ensf)(w:Word)(e1,e2,x:Elt)
 Intros.
 Elim H.
 Intros.
-Cut (Chemin e0 e2 q dA (cons x w)); Auto with v62.
+Cut (Chemin e0 e2 q dA (cons x w)); Auto.
 Intro.
 Cut (<Elt> Ex ([e:Elt]
       	  (chemin e e2 q dA w) /\ (dans e0 q) /\ (dans x alph)
-   	  /\ (dans (couple e0 (couple x e)) dA)) ); Auto with v62.
+   	  /\ (dans (couple e0 (couple x e)) dA)) ); Auto.
 Intro Ht; Elim Ht; Clear Ht.
 Intros e Ht; Elim Ht; Clear Ht.
 Intros H3 Ht; Elim Ht; Clear Ht.
@@ -456,20 +456,20 @@ Intros H4 Ht; Elim Ht; Clear Ht.
 Intros H5 H6.
 Exists e.
 Split.
-2:Apply chemin_A2_un; Auto with v62.
-2:Apply (inmonoid_cons_inv alph w x); Auto with v62.
-Cut (chemin e0 e q dA (cons x nil)); Auto with v62.
-Apply (chemin_cons e e q dA nil e0 x); Auto with v62.
-Apply chemin_nil; Auto with v62.
-Apply (dans_e1_q q dA w e e2); Auto with v62.
+2:Apply chemin_A2_un; Auto.
+2:Apply (inmonoid_cons_inv alph w x); Auto.
+Cut (chemin e0 e q dA (cons x nil)); Auto.
+Apply (chemin_cons e e q dA nil e0 x); Auto.
+Apply chemin_nil; Auto.
+Apply (dans_e1_q q dA w e e2); Auto.
 
 Intros.
 Elim H1.
 Intros e0' Ht; Elim Ht; Clear Ht. 
 Intros H4 H5.
 Exists e0'.
-Split; Auto with v62.
-Apply chemin_A2_deux with e; Auto with v62.
+Split; Auto.
+Apply chemin_A2_deux with e; Auto.
 Save.
 
 Lemma chemin_A_cons_inv : (q,dA:Ensf)(w:Word)(e1,e2,x:Elt)
@@ -480,12 +480,12 @@ Goal.
 Cut (<Elt>Ex ([e:Elt](
      (chemin_A2 q dA (cons x nil) e e1) /\ (chemin_A2 q dA w e2 e)
   ))).
-2:Apply chemin_A2_cons_inv; Auto with v62.
+2:Apply chemin_A2_cons_inv; Auto.
 Intro Ht; Elim Ht; Clear Ht.
 Intros e Ht; Elim Ht; Clear Ht.
 Intros H0 H1.
 Exists e.
-Auto with v62.
+Auto.
 Save.
 ---*)
 
@@ -535,14 +535,14 @@ Definition sync_qa (q qaA dA : Ensf) : Ensf :=
     (tq
        (fun e : Elt => exists e' : Elt, dans e' qaA /\ chemin_A q dA e e' nil)
        q).
-Hint Unfold sync_qa: v62.
+Hint Unfold sync_qa.
 
 (*  Les etats de d'arrivee de l'automate fini comprennent ceux de	*)
 (*  l'automate asynchrone.						*)
 
 Lemma inclus_qaA_qa : forall q qaA dA : Ensf, inclus qaA (sync_qa q qaA dA).
 unfold sync_qa in |- *.
-auto with v62.
+auto.
 Qed.
 
 (*  Par definition on a...						*)
@@ -558,8 +558,8 @@ intros e' Ht; elim Ht; clear Ht.
 intros H0 H1.
 unfold sync_qa in |- *.
 apply union_d.
-apply imp_dans_tq; auto with v62.
-exists e'; auto with v62.
+apply imp_dans_tq; auto.
+exists e'; auto.
 Qed.
 
 (*  et aussi...								*)
@@ -571,11 +571,11 @@ Lemma sync_d_def :
  dans (couple e1 (couple x e2)) (sync_d q dA).
 intros.
 unfold sync_d in |- *.
-apply imp_dans_tq; auto with v62.
+apply imp_dans_tq; auto.
 apply coupl2_inv.
-apply (dansA_e1_q q dA (cons x nil) e1 e2); auto with v62.
-apply coupl2_inv; auto with v62.
-apply (dansA_e2_q q dA (cons x nil) e1 e2); auto with v62.
+apply (dansA_e1_q q dA (cons x nil) e1 e2); auto.
+apply coupl2_inv; auto.
+apply (dansA_e2_q q dA (cons x nil) e1 e2); auto.
 Qed.
 
 Lemma sync_d_def2 :
@@ -589,12 +589,12 @@ intro.
 cut
  (dans (couple e1 (couple x e2)) (prodcart q (prodcart alph q)) /\
   est_dans_d q dA (couple e1 (couple x e2))).
-2: apply dans_tq_imp; auto with v62.
+2: apply dans_tq_imp; auto.
 intro Ht; elim Ht; clear Ht.
 intro H1.
 unfold est_dans_d in |- *.
 unfold est_dans_d2 in |- *.
-auto with v62.
+auto.
 Qed.
 
 Lemma trans_dA_d :
@@ -608,10 +608,10 @@ intros.
 cut (chemin_A q dA e0 e (cons x nil)).
 intro.
 unfold sync_d in |- *.
-apply imp_dans_tq; auto with v62.
-cut (chemin_A q dA e e nil); auto with v62.
+apply imp_dans_tq; auto.
+cut (chemin_A q dA e e nil); auto.
 intro.
-apply chemin_A_cons with e; auto with v62.
+apply chemin_A_cons with e; auto.
 Qed.
 
 (* 									*)
@@ -629,9 +629,9 @@ intros H1 H2; elim H2; clear H2; intros H2 H3.
 red in |- *.
 split.
 unfold sync_qa in |- *.
-apply union_inclus; auto with v62.
+apply union_inclus; auto.
 apply inclus_tq.
-split; auto with v62.
+split; auto.
 unfold sync_d in |- *.
 apply inclus_tq.
 Qed.
@@ -657,15 +657,15 @@ simple induction w.
 intros.
 exists e1.
 split.
-auto with v62.
-cut (Chemin e e2 q (sync_d q dA) nil); auto with v62.
+auto.
+cut (Chemin e e2 q (sync_d q dA) nil); auto.
 intro H3.
-cut (dans e q /\ e = e2 :>Elt); auto with v62.
+cut (dans e q /\ e = e2 :>Elt); auto.
 intro Ht; elim Ht; clear Ht.
 intros H4 H5.
-cut (chemin_A q dA e e2 nil); auto with v62.
+cut (chemin_A q dA e e2 nil); auto.
 cut (chemin_A q dA e1 e2 nil).
-2: apply chemin_A_epsilon with e; auto with v62.
+2: apply chemin_A_epsilon with e; auto.
 intros.
 unfold sync_qa in H1.
 cut
@@ -674,10 +674,10 @@ cut
     (tq
        (fun e : Elt => exists e' : Elt, dans e' qaA /\ chemin_A q dA e e' nil)
        q)).   
-2: apply dans_union; auto with v62.
+2: apply dans_union; auto.
 intro Ht; elim Ht; clear Ht.
-intro; apply nouvx_dans_qa; auto with v62.
-exists e2; auto with v62.
+intro; apply nouvx_dans_qa; auto.
+exists e2; auto.
 
 intro.
 cut
@@ -693,38 +693,38 @@ intro Ht; elim Ht; clear Ht.
 intros H9 Ht; elim Ht; clear Ht.
 intros e3 Ht; elim Ht; clear Ht.
 intros H10 H11.
-cut (chemin_A q dA e e3 nil); auto with v62.
-2: rewrite H5; auto with v62.
+cut (chemin_A q dA e e3 nil); auto.
+2: rewrite H5; auto.
 intro H12.
 cut (chemin_A q dA e1 e3 nil).
-2: apply chemin_A_epsilon with e; auto with v62.
-intro; apply nouvx_dans_qa; auto with v62.
-exists e3; auto with v62.
+2: apply chemin_A_epsilon with e; auto.
+intro; apply nouvx_dans_qa; auto.
+exists e3; auto.
 
 intros x w0 H e1 e e2 H0 H1 H2 H3.
-cut (Chemin e e2 q (sync_d q dA) (cons x w0)); auto with v62.
+cut (Chemin e e2 q (sync_d q dA) (cons x w0)); auto.
 intro.
 cut
  (exists e22 : Elt,
     chemin e22 e2 q (sync_d q dA) w0 /\
     dans e q /\ dans x alph /\ dans (couple e (couple x e22)) (sync_d q dA));
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 intros e22 Ht; elim Ht; clear Ht.
 intros H5 Ht; elim Ht; clear Ht.
 intros H6 Ht; elim Ht; clear Ht; intros H7 H8.
 exists e2.
-split; auto with v62.
+split; auto.
 cut (chemin_A q dA e e22 (cons x nil)).
-2: apply sync_d_def2; auto with v62.
+2: apply sync_d_def2; auto.
 intro.
 cut (chemin_A q dA e1 e22 (cons x nil)).
-2: apply chemin_A_epsilon with e; auto with v62.
+2: apply chemin_A_epsilon with e; auto.
 intro.
 cut (dans (couple e1 (couple x e22)) (sync_d q dA)).
-2: apply sync_d_def; auto with v62.
+2: apply sync_d_def; auto.
 intro.
-apply chemin_cons with e22; auto with v62.
+apply chemin_cons with e22; auto.
 Qed.
 
 (*									*)
@@ -752,35 +752,35 @@ elim H1.
 intros e0 e3 H H2 H3.
 exists e0.
 split.
-apply chemin_nil; auto with v62.
+apply chemin_nil; auto.
 rewrite H2.
-apply dans_trans with qaA; auto with v62.
+apply dans_trans with qaA; auto.
 
 intros.
 cut
  (exists e2' : Elt,
     chemin e e2' q (sync_d q dA) w0 /\ dans e2' (sync_qa q qaA dA));
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 intros e2' Ht; elim Ht; clear Ht.
 intros H7 H8.
 exists e2'.
-split; auto with v62.
-apply chemin_cons with e; auto with v62.
+split; auto.
+apply chemin_cons with e; auto.
 cut (dans e q).
-2: apply (dans_e1_q q (sync_d q dA) w0 e e2'); auto with v62.
+2: apply (dans_e1_q q (sync_d q dA) w0 e e2'); auto.
 intro dans_e_q.
-apply trans_dA_d; auto with v62.
+apply trans_dA_d; auto.
 
 intros.
 cut
  (exists e2' : Elt,
     chemin e e2' q (sync_d q dA) w0 /\ dans e2' (sync_qa q qaA dA));
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 intros e9 Ht; elim Ht; clear Ht.
 intros H6 H7.
-apply (epsilon_chemin q qaA dA w0 e0 e e9); auto with v62.
+apply (epsilon_chemin q qaA dA w0 e0 e e9); auto.
 Qed.
 
 (*									*)
@@ -802,17 +802,17 @@ intros e1 H; elim H; clear H.
 intros e2 H; elim H; clear H.
 intros H2 H; elim H; clear H; intros H3 H4.
 unfold reconnait in |- *.
-split; auto with v62. 
+split; auto. 
 exists e1.
 cut
  (exists e2' : Elt,
     chemin e1 e2' q (sync_d q dA) w /\ dans e2' (sync_qa q qaA dA)). 
-2: apply (cheminA_chemin q qd qaA dA H_aut w e1 e2); auto with v62.
+2: apply (cheminA_chemin q qd qaA dA H_aut w e1 e2); auto.
 intro Ht; elim Ht; clear Ht.
 intros e2' Ht; elim Ht; clear Ht.
 intros H5 H6.
 exists e2'.
-auto with v62.
+auto.
 Qed.
 
 (*									*)
@@ -829,33 +829,33 @@ Lemma chemin_cheminA :
 intros q qd qaA dA H_aut.
 simple induction w.
 intros.
-cut (Chemin e1 e2 q (sync_d q dA) nil); auto with v62.
+cut (Chemin e1 e2 q (sync_d q dA) nil); auto.
 
 intro.
-cut (dans e1 q /\ e1 = e2 :>Elt); auto with v62.
+cut (dans e1 q /\ e1 = e2 :>Elt); auto.
 intro Ht; elim Ht; clear Ht.
-intros; apply chemin_A_nil; auto with v62.
+intros; apply chemin_A_nil; auto.
 
 intros x w0 H e1 e2 H0.
-cut (Chemin e1 e2 q (sync_d q dA) (cons x w0)); auto with v62.
+cut (Chemin e1 e2 q (sync_d q dA) (cons x w0)); auto.
 intro H1.
 cut
  (exists e : Elt,
     chemin e e2 q (sync_d q dA) w0 /\
     dans e1 q /\ dans x alph /\ dans (couple e1 (couple x e)) (sync_d q dA));
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 intros e Ht; elim Ht; clear Ht.
 intros H2 Ht; elim Ht; clear Ht.
 intros H3 H4.
-cut (chemin_A q dA e e2 w0); auto with v62.
+cut (chemin_A q dA e e2 w0); auto.
 intro.
 elim H4; clear H4; intros H4 H6.
 cut (chemin_A q dA e1 e (cons x nil)).
-2: apply sync_d_def2; auto with v62.
+2: apply sync_d_def2; auto.
 intro.
-replace (cons x w0) with (Append (cons x nil) w0); auto with v62.
-apply chemin_Append with e; auto with v62.
+replace (cons x w0) with (Append (cons x nil) w0); auto.
+apply chemin_Append with e; auto.
 Qed.
 
 (*									*)
@@ -882,7 +882,7 @@ cut
        (tq
           (fun e : Elt =>
            exists e' : Elt, dans e' qaA /\ chemin_A q dA e e' nil) q)));
- auto with v62.
+ auto.
 intro H3.
 cut
  (dans e2 qaA \/
@@ -890,18 +890,18 @@ cut
     (tq
        (fun e : Elt => exists e' : Elt, dans e' qaA /\ chemin_A q dA e e' nil)
        q)).
-2: apply dans_union; auto with v62.
+2: apply dans_union; auto.
 intro H4.
 unfold reconnait_A in |- *.
-split; auto with v62.
+split; auto.
 exists e1.
 clear H3; elim H4.
 
 intro.
 exists e2.
-split; auto with v62.
-split; auto with v62.
-apply (chemin_cheminA q qd qaA dA H_aut); auto with v62.
+split; auto.
+split; auto.
+apply (chemin_cheminA q qd qaA dA H_aut); auto.
 
 intro.
 cut
@@ -912,19 +912,19 @@ cut
      with
        (f := fun e : Elt =>
              exists e' : Elt, dans e' qaA /\ chemin_A q dA e e' nil);
-    auto with v62.
+    auto.
 intro Ht; elim Ht; clear Ht.
 intros H5 Ht; elim Ht; clear Ht. 
 intros e2' Ht; elim Ht; clear Ht.
 intros H6 H7.
 exists e2'.
-split; auto with v62.
-split; auto with v62.
+split; auto.
+split; auto.
 cut (chemin_A q dA e1 e2 w). 
-2: apply (chemin_cheminA q qd qaA dA H_aut); auto with v62.
+2: apply (chemin_cheminA q qd qaA dA H_aut); auto.
 intro.
 replace w with (Append w nil).
-apply chemin_Append with e2; auto with v62.
+apply chemin_Append with e2; auto.
 apply Append_w_nil.
 Qed.
 
@@ -948,13 +948,13 @@ intros q qd qaA dA H.
 exists (sync_d q dA).
 exists (sync_qa q qaA dA).
 split.
-apply automateA_automate; auto with v62.
+apply automateA_automate; auto.
 unfold eqwordset in |- *.
 split.
 intro.
-apply reconnaitA_reconnait; auto with v62.
+apply reconnaitA_reconnait; auto.
 intro.
-apply reconnait_reconnaitA; auto with v62.
+apply reconnait_reconnaitA; auto.
 Qed.
 
 
@@ -1009,7 +1009,7 @@ cut
     (exists qa : Ensf,
        automate q qd qa d /\
        eqwordset (reconnait_A q qd qaA dA) (reconnait q qd qa d))).
-2: apply async_is_sync; auto with v62.
+2: apply async_is_sync; auto.
 intro Ht; elim Ht; clear Ht.
 intros d Ht; elim Ht; clear Ht.
 intros qa Ht; elim Ht; clear Ht.
@@ -1019,9 +1019,9 @@ exists q.
 exists qd.
 exists qa.
 exists d.
-split; auto with v62.
-apply eqwordset_trans with (reconnait_A q qd qaA dA); auto with v62.
-apply eqwordset_sym; auto with v62.
+split; auto.
+apply eqwordset_trans with (reconnait_A q qd qaA dA); auto.
+apply eqwordset_sym; auto.
 Qed.
 
 Definition isregular_D (l : wordset) : Prop :=
@@ -1045,25 +1045,25 @@ Lemma automate_A_D :
 unfold automate_A in |- *.
 split.
 apply inclus_add.
-apply automate_def3 with qd d; auto with v62.
-split; auto with v62.
+apply automate_def3 with qd d; auto.
+split; auto.
 apply union_inclus.
 apply inclus_trans with (prodcart q (prodcart alph q)).
 apply automate_def1 with qd qa; assumption.
-apply cart_inclus; auto with v62.
+apply cart_inclus; auto.
 unfold delta_D in |- *.
 unfold inclus in |- *.
 intros x H2.
 cut (exists y : Elt, dans y qd /\ x = transition_D g0 y :>Elt).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht; intros t Ht; elim Ht; clear Ht; intros.
 rewrite H1.
 unfold transition_D in |- *.
-apply coupl2_inv; auto with v62.
-apply coupl2_inv; auto with v62.
+apply coupl2_inv; auto.
+apply coupl2_inv; auto.
 apply dans_add2.
-apply dans_trans with qd; auto with v62.
-apply automate_def2 with qa d; auto with v62.
+apply dans_trans with qd; auto.
+apply automate_def2 with qa d; auto.
 Qed.
 
 (*									*)
@@ -1080,42 +1080,42 @@ Lemma chemin_D_chemin :
 intros q qd qa d g0 e e2 w H_aut H_g0 H.
 elim H; clear H.
 
-auto with v62.
+auto.
 
 intros e1 e0 e3 x w0 H H0 H1 H2 H3 H4.
 cut
  (dans (couple e1 (couple x e0)) d \/
   dans (couple e1 (couple x e0)) (delta_D g0 qd)); 
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 	intro.
 	cut (dans (couple e1 (couple x e0)) (prodcart q (prodcart alph q))).
-	2: apply dans_trans with d; auto with v62.
-	2: apply automate_def1 with qd qa; auto with v62.
+	2: apply dans_trans with d; auto.
+	2: apply automate_def1 with qd qa; auto.
 	intro.
 	cut (dans e1 q /\ dans (couple x e0) (prodcart alph q)).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (dans x alph /\ dans e0 q).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
-	apply chemin_cons with e0; auto with v62.
+	apply chemin_cons with e0; auto.
 
 	unfold delta_D in |- *.
 	intro H5.
 	cut
   (exists y : Elt,
      dans y qd /\ couple e1 (couple x e0) = transition_D g0 y :>Elt).
-	2: apply dans_map; auto with v62.
+	2: apply dans_map; auto.
 	intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 	unfold transition_D in H7.
 	cut (e1 = g0 :>Elt /\ couple x e0 = couple epsilon y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (x = epsilon :>Elt /\ e0 = y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans x alph); auto with v62.
+	absurd (dans x alph); auto.
 	rewrite H10.
 	red in |- *; intro; apply not_dans_epsilon_alph; assumption.
 
@@ -1123,20 +1123,20 @@ intros e1 e0 e3 w0 H H1 H2 H3 H4.
 cut
  (dans (couple e1 (couple epsilon e0)) d \/
   dans (couple e1 (couple epsilon e0)) (delta_D g0 qd)); 
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 	intro.
 	cut (dans (couple e1 (couple epsilon e0)) (prodcart q (prodcart alph q))).
-	2: apply dans_trans with d; auto with v62.
-	2: apply automate_def1 with qd qa; auto with v62.
+	2: apply dans_trans with d; auto.
+	2: apply automate_def1 with qd qa; auto.
 	intro.
 	cut (dans e1 q /\ dans (couple epsilon e0) (prodcart alph q)).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (dans epsilon alph /\ dans e0 q).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans epsilon alph); auto with v62.
+	absurd (dans epsilon alph); auto.
 	red in |- *; intro; apply not_dans_epsilon_alph; assumption.
 
 	unfold delta_D in |- *.
@@ -1144,13 +1144,13 @@ intro Ht; elim Ht; clear Ht.
 	cut
   (exists y : Elt,
      dans y qd /\ couple e1 (couple epsilon e0) = transition_D g0 y :>Elt).
-	2: apply dans_map; auto with v62.
+	2: apply dans_map; auto.
 	intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 	unfold transition_D in H6.
 	cut (e1 = g0 :>Elt /\ couple epsilon e0 = couple epsilon y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans g0 q); auto with v62.
+	absurd (dans g0 q); auto.
 	rewrite <- H7.
 	assumption. 
 Qed.
@@ -1174,27 +1174,27 @@ intros q qd qa d g0 e1 e2 w H_aut H_g0 H.
 elim H; clear H.
 
 intros e0 e3 H H0 H1 H2.
-absurd (dans g0 q); auto with v62.
+absurd (dans g0 q); auto.
 rewrite <- H1.
 rewrite H0.
-apply dans_trans with qa; auto with v62.
-apply automate_def3 with qd d; auto with v62.
+apply dans_trans with qa; auto.
+apply automate_def3 with qd d; auto.
 
 intros e0 e e3 x w0 H H0 H1 H2 H3 H4 H5.
 clear H0.
 cut
  (dans (couple e0 (couple x e)) d \/
-  dans (couple e0 (couple x e)) (delta_D g0 qd)); auto with v62.
+  dans (couple e0 (couple x e)) (delta_D g0 qd)); auto.
 intro Ht; elim Ht; clear Ht.
 	intro.
 	cut (dans (couple e0 (couple x e)) (prodcart q (prodcart alph q))).
-	2: apply dans_trans with d; auto with v62.
-	2: apply automate_def1 with qd qa; auto with v62.
+	2: apply dans_trans with d; auto.
+	2: apply automate_def1 with qd qa; auto.
 	intro.
 	cut (dans e0 q /\ dans (couple x e) (prodcart alph q)).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans g0 q); auto with v62.
+	absurd (dans g0 q); auto.
 	rewrite <- H4.
 	assumption.
 	
@@ -1203,16 +1203,16 @@ intro Ht; elim Ht; clear Ht.
 	cut
   (exists y : Elt,
      dans y qd /\ couple e0 (couple x e) = transition_D g0 y :>Elt).
-	2: apply dans_map; auto with v62.
+	2: apply dans_map; auto.
 	intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 	unfold transition_D in H7.
 	cut (e0 = g0 :>Elt /\ couple x e = couple epsilon y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (x = epsilon :>Elt /\ e = y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans x alph); auto with v62.
+	absurd (dans x alph); auto.
 	rewrite H10.
 	red in |- *; intro; apply not_dans_epsilon_alph; assumption.
 
@@ -1224,20 +1224,20 @@ split.
 cut
  (dans (couple e0 (couple epsilon e)) d \/
   dans (couple e0 (couple epsilon e)) (delta_D g0 qd)); 
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 	intro.
 	cut (dans (couple e0 (couple epsilon e)) (prodcart q (prodcart alph q))).
-	2: apply dans_trans with d; auto with v62.
-	2: apply automate_def1 with qd qa; auto with v62.
+	2: apply dans_trans with d; auto.
+	2: apply automate_def1 with qd qa; auto.
 	intro.
 	cut (dans e0 q /\ dans (couple epsilon e) (prodcart alph q)).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (dans epsilon alph /\ dans e q).
-	2: apply coupl2; auto with v62.	
+	2: apply coupl2; auto.	
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans epsilon alph); auto with v62.
+	absurd (dans epsilon alph); auto.
 	red in |- *; intro; apply not_dans_epsilon_alph; assumption.
 	
 	unfold delta_D in |- *.
@@ -1245,14 +1245,14 @@ intro Ht; elim Ht; clear Ht.
 	cut
   (exists y : Elt,
      dans y qd /\ couple e0 (couple epsilon e) = transition_D g0 y :>Elt).
-	2: apply dans_map; auto with v62.
+	2: apply dans_map; auto.
 	intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 	unfold transition_D in H6.
 	cut (e0 = g0 :>Elt /\ couple epsilon e = couple epsilon y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (epsilon = epsilon :>Elt /\ e = y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	rewrite H10.
 	assumption.
@@ -1270,33 +1270,33 @@ Lemma chemin_A_e1_g0_abs :
  e2 = g0 :>Elt -> ~ chemin_A (add g0 q) (union d (delta_D g0 qd)) e e2 w.
 intros q qd qa d g0 e e2 w H_aut H H0 H1.
 red in |- *; intro.
-cut (dans e q); auto with v62.
-cut (e2 = g0 :>Elt); auto with v62.
+cut (dans e q); auto.
+cut (e2 = g0 :>Elt); auto.
 elim H2.
 
 intros e1 e0 H3 H4 H5 H6.
-absurd (dans g0 q); auto with v62.
+absurd (dans g0 q); auto.
 rewrite <- H5.
 rewrite <- H4; assumption.
 
 intros e1 e0 e3 x w0 H3 H4 H5 H6 H7 H8 H9.
-apply H4; auto with v62.
+apply H4; auto.
 cut
  (dans (couple e1 (couple x e0)) d \/
   dans (couple e1 (couple x e0)) (delta_D g0 qd)); 
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 
 	intro.
 	cut (dans (couple e1 (couple x e0)) (prodcart q (prodcart alph q))).
-	2: apply dans_trans with d; auto with v62.
-	2: apply automate_def1 with qd qa; auto with v62.
+	2: apply dans_trans with d; auto.
+	2: apply automate_def1 with qd qa; auto.
 	intro.	
 	cut (dans e1 q /\ dans (couple x e0) (prodcart alph q)).
-	2: apply coupl2; auto with v62.
+	2: apply coupl2; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (dans x alph /\ dans e0 q).
-	2: apply coupl2; auto with v62.
+	2: apply coupl2; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	assumption.
 	
@@ -1305,49 +1305,49 @@ intro Ht; elim Ht; clear Ht.
 	cut
   (exists y : Elt,
      dans y qd /\ couple e1 (couple x e0) = transition_D g0 y :>Elt).
-	2: apply dans_map; auto with v62.
+	2: apply dans_map; auto.
 	intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 	unfold transition_D in H12.
 	cut (e1 = g0 :>Elt /\ couple x e0 = couple epsilon y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans e1 q); auto with v62.
-	rewrite H13; auto with v62.
+	absurd (dans e1 q); auto.
+	rewrite H13; auto.
 
 intros e1 e0 e3 w0 H3 H4 H5 H6 H7 H8.
-apply H4; auto with v62.
+apply H4; auto.
 cut
  (dans (couple e1 (couple epsilon e0)) d \/
   dans (couple e1 (couple epsilon e0)) (delta_D g0 qd)); 
- auto with v62.
+ auto.
 intro Ht; elim Ht; clear Ht.
 
 	intro.
 	cut (dans (couple e1 (couple epsilon e0)) (prodcart q (prodcart alph q))).
-	2: apply dans_trans with d; auto with v62.
-	2: apply automate_def1 with qd qa; auto with v62.
+	2: apply dans_trans with d; auto.
+	2: apply automate_def1 with qd qa; auto.
 	intro.	
 	cut (dans e1 q /\ dans (couple epsilon e0) (prodcart alph q)).
-	2: apply coupl2; auto with v62.
+	2: apply coupl2; auto.
 	intro Ht; elim Ht; clear Ht; intros.
 	cut (dans epsilon alph /\ dans e0 q).
-	2: apply coupl2; auto with v62.
+	2: apply coupl2; auto.
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans epsilon alph); auto with v62.
+	absurd (dans epsilon alph); auto.
 	
 	unfold delta_D in |- *.
 	intro.
 	cut
   (exists y : Elt,
      dans y qd /\ couple e1 (couple epsilon e0) = transition_D g0 y :>Elt).
-	2: apply dans_map; auto with v62.
+	2: apply dans_map; auto.
 	intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 	unfold transition_D in H11.
 	cut (e1 = g0 :>Elt /\ couple epsilon e0 = couple epsilon y' :>Elt).
-	2: apply equal_couple; auto with v62.
+	2: apply equal_couple; auto.
 	intro Ht; elim Ht; clear Ht; intros.
-	absurd (dans e1 q); auto with v62.
-	rewrite H12; auto with v62.
+	absurd (dans e1 q); auto.
+	rewrite H12; auto.
 Qed.
 
 
@@ -1363,27 +1363,27 @@ Lemma chemin_A_e1_g0 :
  chemin_A (add g0 q) (union d (delta_D g0 qd)) e1 e2 w ->
  e2 = g0 :>Elt -> w = nil :>Word.
 intros q qd qa d g0 e1 e2 w H_aut H_g0 H.
-elim H; auto with v62.
+elim H; auto.
 intros e0 e e3 x w0 H0 H1 H2 H3 H4 H5.
 absurd (chemin_A (add g0 q) (union d (delta_D g0 qd)) e g0 w0).
-2: cut (chemin_A (add g0 q) (union d (delta_D g0 qd)) e e3 w0); auto with v62.
-2: rewrite H5; auto with v62.
-apply chemin_A_e1_g0_abs with qa; auto with v62.
+2: cut (chemin_A (add g0 q) (union d (delta_D g0 qd)) e e3 w0); auto.
+2: rewrite H5; auto.
+apply chemin_A_e1_g0_abs with qa; auto.
 cut
  (dans (couple e0 (couple x e)) d \/
-  dans (couple e0 (couple x e)) (delta_D g0 qd)); auto with v62.
+  dans (couple e0 (couple x e)) (delta_D g0 qd)); auto.
 intro Ht; elim Ht; clear Ht.
 
 intro.
 cut (dans (couple e0 (couple x e)) (prodcart q (prodcart alph q))).
-2: apply dans_trans with d; auto with v62.
-2: apply automate_def1 with qd qa; auto with v62.
+2: apply dans_trans with d; auto.
+2: apply automate_def1 with qd qa; auto.
 intro.
 cut (dans e0 q /\ dans (couple x e) (prodcart alph q)).
-2: apply coupl2; auto with v62.
+2: apply coupl2; auto.
 intro Ht; elim Ht; clear Ht; intros.
 cut (dans x alph /\ dans e q).
-2: apply coupl2; auto with v62.
+2: apply coupl2; auto.
 intro Ht; elim Ht; clear Ht; intros.
 assumption.
 
@@ -1392,16 +1392,16 @@ intro.
 cut
  (exists y : Elt,
     dans y qd /\ couple e0 (couple x e) = transition_D g0 y :>Elt).
-2: apply dans_map; auto with v62.
+2: apply dans_map; auto.
 intro Ht; elim Ht; clear Ht; intros y' Ht; elim Ht; clear Ht; intros.
 unfold transition_D in H8.
 cut (e0 = g0 :>Elt /\ couple x e = couple epsilon y' :>Elt).
-2: apply equal_couple; auto with v62.
+2: apply equal_couple; auto.
 intro Ht; elim Ht; clear Ht; intros.
 cut (x = epsilon :>Elt /\ e = y' :>Elt).
-2: apply equal_couple; auto with v62.
+2: apply equal_couple; auto.
 intro Ht; elim Ht; clear Ht; intros.
-absurd (dans x alph); auto with v62.
+absurd (dans x alph); auto.
 rewrite H11.
 red in |- *; intro; apply not_dans_epsilon_alph; assumption.
 Qed.
@@ -1435,16 +1435,16 @@ split.
 	assumption.
 	exists g0.
 	exists e2.
-	split; [ auto with v62 | split ].
+	split; [ auto | split ].
 	assumption.
-	apply chemin_A_epsilon with e1; auto with v62.
-	apply chemin_A_d1_d2 with d; auto with v62.
-	apply chemin_A_q1_q2 with q; auto with v62.
-	apply chemin_chemin_A; auto with v62.
+	apply chemin_A_epsilon with e1; auto.
+	apply chemin_A_d1_d2 with d; auto.
+	apply chemin_A_q1_q2 with q; auto.
+	apply chemin_chemin_A; auto.
 	apply union_d.
 	unfold delta_D in |- *.
 	replace (couple g0 (couple epsilon e1)) with (transition_D g0 e1);
-  auto with v62.
+  auto.
 
 	unfold reconnait_A in |- *.
 	intro Ht; elim Ht; clear Ht; intros H1 Ht; elim Ht; clear Ht; intros e1 Ht;
@@ -1453,23 +1453,23 @@ split.
 	unfold reconnait in |- *.
 	split.
 	assumption.
-	cut (e1 = g0 :>Elt); auto with v62.
+	cut (e1 = g0 :>Elt); auto.
 	intro.
 	cut
   (exists e : Elt,
      dans e qd /\ chemin_A (add g0 q) (union d (delta_D g0 qd)) e e2 w).
-	2: apply chemin_A_g0_e2 with qa e1; auto with v62.
+	2: apply chemin_A_g0_e2 with qa e1; auto.
 	intro Ht; elim Ht; clear Ht; intros e Ht; elim Ht; clear Ht; intros.
 	exists e.
 	exists e2.
 	split; [ assumption | split ].
 	assumption.
-	apply chemin_D_chemin with qd qa g0; auto with v62.
-	apply dans_trans with qd; auto with v62.
-	apply automate_def2 with qa d; auto with v62.
+	apply chemin_D_chemin with qd qa g0; auto.
+	apply dans_trans with qd; auto.
+	apply automate_def2 with qa d; auto.
 
 intros.
-apply chemin_A_e1_g0 with q qd qa d g0 g0 g0; auto with v62.
+apply chemin_A_e1_g0 with q qd qa d g0 g0 g0; auto.
 Qed.
 
 (*									*)
@@ -1491,7 +1491,7 @@ cut (exists g0 : Elt, ~ dans g0 q).
 intro Ht; elim Ht; clear Ht; intros g0 H1.
 
 cut (automate_A (add g0 q) (singleton g0) qa (union d (delta_D g0 qd))).
-2: apply automate_A_D; auto with v62.
+2: apply automate_A_D; auto.
 intro.
 unfold isregular_D in |- *.
 exists (add g0 q).
@@ -1499,21 +1499,21 @@ exists g0.
 exists (sync_qa (add g0 q) qa (union d (delta_D g0 qd))).
 exists (sync_d (add g0 q) (union d (delta_D g0 qd))).
 split.
-apply automateA_automate; auto with v62.
+apply automateA_automate; auto.
 cut
  (eqwordset (reconnait q qd qa d)
     (reconnait_A (add g0 q) (singleton g0) qa (union d (delta_D g0 qd))) /\
   (forall w : Word,
    chemin_A (add g0 q) (union d (delta_D g0 qd)) g0 g0 w -> w = nil :>Word)). 
-2: apply isregular_isregular_D_1; auto with v62.
+2: apply isregular_isregular_D_1; auto.
 intro Ht; elim Ht; clear Ht; intros.
 split.
 
 	intros w H5.
 	cut (chemin_A (add g0 q) (union d (delta_D g0 qd)) g0 g0 w).
-	2: apply chemin_cheminA with (singleton g0) qa; auto with v62.
+	2: apply chemin_cheminA with (singleton g0) qa; auto.
 	intro.
-	apply (H4 w); auto with v62.
+	apply (H4 w); auto.
 
 	apply
   eqwordset_trans
@@ -1522,9 +1522,9 @@ split.
 	intro w.
 	split.
 	intro.
-	apply reconnait_reconnaitA; auto with v62.
+	apply reconnait_reconnaitA; auto.
 	intro.
-	apply reconnaitA_reconnait; auto with v62.
-	apply eqwordset_trans with (reconnait q qd qa d); auto with v62.
+	apply reconnaitA_reconnait; auto.
+	apply eqwordset_trans with (reconnait q qd qa d); auto.
 	apply eqwordset_sym; assumption.
 Qed.

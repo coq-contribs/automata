@@ -52,8 +52,8 @@ Inductive inmonoid (X : Ensf) : Word -> Prop :=
   | inmonoid_cons :
       forall (w : Word) (e : Elt),
       inmonoid X w -> dans e X -> inmonoid X (cons e w).
-Hint Resolve inmonoid_nil: v62.
-Hint Resolve inmonoid_cons: v62.
+Hint Resolve inmonoid_nil.
+Hint Resolve inmonoid_cons.
 
 (*  Inversion de la definition 						*)
 (*
@@ -75,48 +75,48 @@ elim H.
 red in |- *; simpl in |- *; exact I.
 intros.
 change (dans e X /\ Inmonoid X w0) in |- *.
-auto with v62.
+auto.
 Qed.
-Hint Resolve i_I: v62.
+Hint Resolve i_I.
 
 Lemma I_i : forall (X : Ensf) (w : Word), Inmonoid X w -> inmonoid X w.
 intros X.
 simple induction w.
-auto with v62.
+auto.
 intros x w0 H H0.
-cut (dans x X /\ Inmonoid X w0); auto with v62.
+cut (dans x X /\ Inmonoid X w0); auto.
 intro H1; elim H1; clear H1.
-auto with v62.
+auto.
 Qed.
-Hint Resolve I_i: v62.
+Hint Resolve I_i.
 
 Lemma inmonoid_cons_inv :
  forall (X : Ensf) (w : Word) (a : Elt),
  inmonoid X (cons a w) -> inmonoid X w.
 intros.
-cut (Inmonoid X w); auto with v62.
-cut (Inmonoid X (cons a w)); auto with v62.
+cut (Inmonoid X w); auto.
+cut (Inmonoid X (cons a w)); auto.
 intro H0.
-cut (dans a X /\ Inmonoid X w); auto with v62.
+cut (dans a X /\ Inmonoid X w); auto.
 intro H1; elim H1; clear H1.
-auto with v62.
+auto.
 Qed.
 
 Lemma inmonoid_cons_inv2 :
  forall (X : Ensf) (a : Elt) (w : Word), inmonoid X (cons a w) -> dans a X.
 intros.
-cut (Inmonoid X (cons a w)); auto with v62.
+cut (Inmonoid X (cons a w)); auto.
 intro.
-cut (dans a X /\ Inmonoid X w); auto with v62.
+cut (dans a X /\ Inmonoid X w); auto.
 intro H1; elim H1; clear H1.
-auto with v62.
+auto.
 Qed.
 
 Lemma inmonoid_inclus :
  forall (E F : Ensf) (x : Word), inclus E F -> inmonoid E x -> inmonoid F x.
 intros E F x inclus_E_F inmonoid_E_x.
 elim inmonoid_E_x.
-        trivial with v62.
+        trivial.
  
         intros w e inmonoid_E_w inmonoid_F_w dans_e_E.
         apply inmonoid_cons; [ assumption | apply inclus_E_F; assumption ].
@@ -146,10 +146,10 @@ Fixpoint Append (w1 : Word) : Word -> Word :=
 
 Lemma Append_w_nil : forall w : Word, Append w nil = w :>Word.
 simple induction w.
-auto with v62.
+auto.
 intros x w0 H.
-replace (Append (cons x w0) nil) with (cons x (Append w0 nil)); auto with v62.
-rewrite H; auto with v62.
+replace (Append (cons x w0) nil) with (cons x (Append w0 nil)); auto.
+rewrite H; auto.
 Qed.
 
 Inductive append : Word -> Word -> Word -> Prop :=
@@ -165,26 +165,26 @@ Lemma Append_inmonoid_g :
  forall (X : Ensf) (w1 w2 : Word), inmonoid X (Append w1 w2) -> inmonoid X w1.
 intros X.
 simple induction w1.
-auto with v62.
+auto.
 intros x w H w2.
-replace (Append (cons x w) w2) with (cons x (Append w w2)); auto with v62.
+replace (Append (cons x w) w2) with (cons x (Append w w2)); auto.
 intro.
 apply inmonoid_cons.
 apply (H w2).
-apply inmonoid_cons_inv with x; auto with v62.
-apply inmonoid_cons_inv2 with (Append w w2); auto with v62.
+apply inmonoid_cons_inv with x; auto.
+apply inmonoid_cons_inv2 with (Append w w2); auto.
 Qed.
 
 Lemma Append_inmonoid_d :
  forall (X : Ensf) (w1 w2 : Word), inmonoid X (Append w1 w2) -> inmonoid X w2.
 intros X.
 simple induction w1.
-auto with v62.
+auto.
 intros x w H w2.
-replace (Append (cons x w) w2) with (cons x (Append w w2)); auto with v62.
+replace (Append (cons x w) w2) with (cons x (Append w w2)); auto.
 intro.
 apply (H w2).
-apply inmonoid_cons_inv with x; auto with v62.
+apply inmonoid_cons_inv with x; auto.
 Qed.
 
 Lemma inmonoid_Append :
@@ -192,13 +192,13 @@ Lemma inmonoid_Append :
  inmonoid X w1 -> inmonoid X w2 -> inmonoid X (Append w1 w2).
 intros X.
 simple induction w1.
-auto with v62.
+auto.
 intros x w H w2 H0 H1.
-replace (Append (cons x w) w2) with (cons x (Append w w2)); auto with v62.
+replace (Append (cons x w) w2) with (cons x (Append w w2)); auto.
 apply inmonoid_cons.
-apply (H w2); auto with v62.
-apply inmonoid_cons_inv with x; auto with v62.
-apply inmonoid_cons_inv2 with w; auto with v62.
+apply (H w2); auto.
+apply inmonoid_cons_inv with x; auto.
+apply inmonoid_cons_inv2 with w; auto.
 Qed.
 
 
@@ -217,14 +217,14 @@ Definition eqwordset (l1 l2 : wordset) : Prop :=
 
 Lemma eqwordset_refl : forall L : wordset, eqwordset L L.
 red in |- *.
-auto with v62.
+auto.
 Qed.
 
 Lemma eqwordset_sym :
  forall l1 l2 : wordset, eqwordset l1 l2 -> eqwordset l2 l1.
 unfold eqwordset in |- *.
 intros.
-elim (H w); clear H; intros; auto with v62.
+elim (H w); clear H; intros; auto.
 Qed.
 
 Lemma eqwordset_trans :
@@ -234,7 +234,7 @@ unfold eqwordset in |- *.
 intros.
 elim (H0 w); clear H0; intros.
 elim (H w); clear H; intros.
-auto with v62.
+auto.
 Qed.
 
 (*									*)
@@ -267,11 +267,11 @@ Lemma inmonoid_map :
  forall (f : Elt -> Elt) (a : Ensf) (w : Word),
  inmonoid a w -> inmonoid (map f a) (Word_ext f w).
 intros.
-elim H; [ unfold Word_ext in |- *; auto with v62 | idtac ].
+elim H; [ unfold Word_ext in |- *; auto | idtac ].
 intros; unfold Word_ext in |- *; simpl in |- *.
-apply inmonoid_cons; try apply dans_map_inv; auto with v62.
+apply inmonoid_cons; try apply dans_map_inv; auto.
 Qed.
-Hint Resolve inmonoid_map: v62.
+Hint Resolve inmonoid_map.
 
 (*  Un petit lemme bien utile par la suite...				*)
 
@@ -281,9 +281,9 @@ Lemma cons_cons :
 intros.
 rewrite H0.
 rewrite H.
-auto with v62.
+auto.
 Qed.
-Hint Resolve cons_cons: v62.
+Hint Resolve cons_cons.
 
 Definition fun_consaw_a (w : Word) : Elt :=
   match w return Elt with
@@ -306,28 +306,28 @@ Lemma cons_cons_inv :
  cons x1 w1 = cons x2 w2 -> x1 = x2 /\ w1 = w2.
 intros.
 split.
-replace x1 with (fun_consaw_a (cons x1 w1)); auto with v62.
-replace x2 with (fun_consaw_a (cons x2 w2)); auto with v62.
-apply (f_equal (A:=Word) (B:=Elt)); auto with v62.
-replace w1 with (fun_consaw_w (cons x1 w1)); auto with v62.
-replace w2 with (fun_consaw_w (cons x2 w2)); auto with v62.
-apply (f_equal (A:=Word) (B:=Word)); auto with v62.
+replace x1 with (fun_consaw_a (cons x1 w1)); auto.
+replace x2 with (fun_consaw_a (cons x2 w2)); auto.
+apply (f_equal (A:=Word) (B:=Elt)); auto.
+replace w1 with (fun_consaw_w (cons x1 w1)); auto.
+replace w2 with (fun_consaw_w (cons x2 w2)); auto.
+apply (f_equal (A:=Word) (B:=Word)); auto.
 Qed.
 
-Hint Resolve cons_cons_inv: v62.
+Hint Resolve cons_cons_inv.
 
 Lemma cons_cons_inv1 :
  forall (x1 x2 : Elt) (w1 w2 : Word),
  cons x1 w1 = cons x2 w2 :>Word -> x1 = x2 :>Elt.
 intros.
-cut (x1 = x2 :>Elt /\ w1 = w2 :>Word); [ intuition | auto with v62 ].
+cut (x1 = x2 :>Elt /\ w1 = w2 :>Word); [ intuition | auto ].
 Qed.
 
 
 Lemma cons_cons_inv2 :
  forall (x1 x2 : Elt) (w1 w2 : Word), cons x1 w1 = cons x2 w2 -> w1 = w2.
 intros.
-cut (x1 = x2 /\ w1 = w2); [ intuition | auto with v62 ].
+cut (x1 = x2 /\ w1 = w2); [ intuition | auto ].
 Qed.
 
 
@@ -340,11 +340,11 @@ Lemma nil_or_cons :
  w = nil \/ (exists x : Elt, (exists w0 : Word, w = cons x w0)).
 simple induction w.
 
-left; auto with v62.
+left; auto.
 
 intros x w0 H.
 right.
 exists x.
 exists w0.
-auto with v62.
+auto.
 Qed.

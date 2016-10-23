@@ -78,7 +78,7 @@ unfold lstar in |- *.
 intros.
 elim H0; clear H0.
 intros x H0.
-apply (H x w); auto with v62.
+apply (H x w); auto.
 Qed.
 
 (*									*)
@@ -95,7 +95,7 @@ exists w.
 exists nil.
 split; [ assumption | split ]. 
 unfold lpuiss in |- *.
-unfold lword in |- *; auto with v62.
+unfold lword in |- *; auto.
 symmetry  in |- *.
 apply Append_w_nil.
 Qed.

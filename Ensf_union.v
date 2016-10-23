@@ -64,57 +64,57 @@ Lemma union_a_empty : forall a : Ensf, a = union a empty :>Ensf.
 simple induction a.
 apply refl_equal.
 intros a0 b H.
-simpl in |- *; auto with v62.
+simpl in |- *; auto.
 Qed.
-Hint Resolve union_a_empty: v62.
+Hint Resolve union_a_empty.
 
 
 Lemma dans_union :
  forall (x : Elt) (a b : Ensf), dans x (union a b) -> dans x a \/ dans x b.
 intros x.
 simple induction a.
-auto with v62.
+auto.
 
 intros a0 b H b0.
 simpl in |- *.
 intro H0.
 cut (a0 = x :>Elt \/ dans x (union b b0)).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1.
 intro; left.
-rewrite H2; auto with v62.
+rewrite H2; auto.
 intro.
-cut (dans x b \/ dans x b0); auto with v62.
-intro H3; elim H3; auto with v62.
+cut (dans x b \/ dans x b0); auto.
+intro H3; elim H3; auto.
 Qed.
-Hint Resolve dans_union: v62.
+Hint Resolve dans_union.
 
 
 Lemma union_g : forall (x : Elt) (a b : Ensf), dans x a -> dans x (union a b).
 intro x.
 simple induction a.
 intros.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 intros a0 b H b0.
 simpl in |- *.
 intro.
 cut (a0 = x :>Elt \/ dans x b).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
 intro H1.
-rewrite H1; auto with v62.
-auto with v62.
+rewrite H1; auto.
+auto.
 Qed.
-Hint Resolve union_g: v62.
+Hint Resolve union_g.
 
 Lemma union_d : forall (x : Elt) (a b : Ensf), dans x b -> dans x (union a b).
 intro x.
-simple induction a; simpl in |- *; auto with v62.
+simple induction a; simpl in |- *; auto.
 Qed.
-Hint Resolve union_d: v62.
+Hint Resolve union_d.
 
 
 Lemma dans_union_inv :
  forall (x : Elt) (a b : Ensf), dans x a \/ dans x b -> dans x (union a b).
-intros x a b H; elim H; auto with v62.
+intros x a b H; elim H; auto.
 Qed.
