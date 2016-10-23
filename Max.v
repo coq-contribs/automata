@@ -84,9 +84,9 @@ Fixpoint sup (e : Ensf) : nat :=
 Lemma sup_add :
  forall (x : Elt) (e : Ensf), sup (add x e) = max (Z x) (sup e) :>nat.
 intros x.
-simple induction e; auto with v62.
+simple induction e; auto.
 Qed.
-Hint Resolve sup_add: v62.
+Hint Resolve sup_add.
 
 (*  Finalement inutile :  *)
 (*
@@ -95,11 +95,11 @@ Intros; Red; Intro.
 Absurd (<nat>n=m).
 Assumption.
 Replace n with (natural_inv (natural n)).
-2:Auto with v62.
+2:Auto.
 Replace m with (natural_inv (natural m)).
-2:Auto with v62.
+2:Auto.
 Elim H0.
-Auto with v62.
+Auto.
 Save.
 *)
 
@@ -109,22 +109,22 @@ Lemma lt_diff : (n,m:nat)(lt m n)->~(<nat>n=m).
 Intros.
 Red.
 Intro.
-Cut (lt m n); Auto with v62.
+Cut (lt m n); Auto.
 Elim H0.
 Change ~(lt n n).
-Auto with v62.
+Auto.
 Save.
 *)
 
 Lemma elt_not_sym : forall a b : Elt, a <> b :>Elt -> b <> a :>Elt.
-auto with v62.
+auto.
 Qed.
 
 (*  (Z (natural n)) vaut (S n), donc est plus grand que n		*)
 
 Lemma lt_n_Z : forall n : nat, n < Z (natural n).
 intro.
-replace (Z (natural n)) with (S n); auto with v62.
+replace (Z (natural n)) with (S n); auto.
 Qed.
 
 (*									*)
@@ -135,17 +135,17 @@ Qed.
 Lemma lt_n_sup : forall (x : Ensf) (n : nat), dans (natural n) x -> n < sup x.
 simple induction x.
 intros.
-absurd (dans (natural n) empty); auto with v62.
+absurd (dans (natural n) empty); auto.
 intros a b H n H0.
 replace (sup (add a b)) with (max (Z a) (sup b)).
-2: auto with v62.
+2: auto.
 cut (n < Z a \/ n < sup b).
 intro.
-elim H1; auto with v62.
-intros; apply lt_le_trans with (Z a); auto with v62.
-intros; apply lt_le_trans with (sup b); auto with v62.
+elim H1; auto.
+intros; apply lt_le_trans with (Z a); auto with arith.
+intros; apply lt_le_trans with (sup b); auto with arith.
 cut (a = natural n :>Elt \/ dans (natural n) b).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro.
 elim H1.
 intro; left.

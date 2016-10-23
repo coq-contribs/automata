@@ -72,27 +72,27 @@ Lemma dans_tq_imp :
  dans x (tq f E) -> dans x E /\ f x.
 intros x f.
 simple induction E.
-replace (tq f empty) with empty; auto with v62.
+replace (tq f empty) with empty; auto.
 intro.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 intros a b H.
 replace (tq f (add a b)) with
  match Pdec f a return Ensf with
  | left fa => add a (tq f b)
  | right nfa => tq f b
- end; auto with v62.
+ end; auto.
 elim (Pdec f a).
 intros a0 H0.
 cut (a = x :>Elt \/ dans x (tq f b)).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
-intro H1; rewrite <- H1; auto with v62.
+intro H1; rewrite <- H1; auto.
 intro.
-cut (dans x b /\ f x); auto with v62.
-intro H2; elim H2; auto with v62.
+cut (dans x b /\ f x); auto.
+intro H2; elim H2; auto.
 intros.
-cut (dans x b /\ f x); auto with v62.
-intro H1; elim H1; auto with v62.
+cut (dans x b /\ f x); auto.
+intro H1; elim H1; auto.
 Qed.
 
 (*  									*)
@@ -106,30 +106,30 @@ Lemma imp_dans_tq :
 intros x f.
 simple induction E.
 intro.
-apply (dans_empty_imp_P x); auto with v62.
+apply (dans_empty_imp_P x); auto.
 intros a b H H0 x0.
 replace (tq f (add a b)) with
  match Pdec f a return Ensf with
  | left fa => add a (tq f b)
  | right nfa => tq f b
- end; auto with v62.
+ end; auto.
 elim (Pdec f a).
 
 intro.
 cut (a = x :>Elt \/ dans x b). 
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
-intro H1; rewrite H1; auto with v62.
-auto with v62.
+intro H1; rewrite H1; auto.
+auto.
 
 intro.
 cut (a = x :>Elt \/ dans x b). 
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H1; elim H1; clear H1.
 intro.
-absurd (f a); auto with v62.
-rewrite H1; auto with v62.
-auto with v62.
+absurd (f a); auto.
+rewrite H1; auto.
+auto.
 Qed.
 
 (*									*)
@@ -140,7 +140,7 @@ Qed.
 Lemma inclus_tq : forall (f : Elt -> Prop) (a : Ensf), inclus (tq f a) a.
 unfold inclus in |- *.
 intros.
-cut (dans x a /\ f x); auto with v62.
-2: apply dans_tq_imp; auto with v62.
-intro H0; elim H0; auto with v62.
+cut (dans x a /\ f x); auto.
+2: apply dans_tq_imp; auto.
+intro H0; elim H0; auto.
 Qed.

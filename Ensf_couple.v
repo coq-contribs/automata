@@ -76,17 +76,17 @@ Lemma equal_couple :
  forall x y z t : Elt,
  couple x y = couple z t :>Elt -> x = z :>Elt /\ y = t :>Elt.
 intros x y z t H.
-injection H; auto with v62.
+injection H; auto.
 Qed.
 
 Lemma couple_couple_inv1 :
  forall a b c d : Elt, couple a c = couple b d :>Elt -> a = b :>Elt.
 intros a b c d H.
-injection H; auto with v62.
+injection H; auto.
 Qed.
  
 Lemma couple_couple_inv2 :
  forall a b c d : Elt, couple a c = couple b d :>Elt -> c = d :>Elt.
 intros a b c d H.
-injection H; auto with v62.
+injection H; auto.
 Qed.

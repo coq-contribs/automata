@@ -79,14 +79,14 @@ Definition P_automata := inmonoid P wd /\ inmonoid P wa /\ Transition.
 Lemma P_automata_1 : P_automata -> inmonoid P wd.
 unfold P_automata in |- *.
 intro temp; elim temp.
-auto with v62.
+auto.
 Qed.
 
 Lemma P_automata_2 : P_automata -> Transition.
 unfold P_automata in |- *.
 intro temp; elim temp; clear temp.
 intros H temp; elim temp; clear temp.
-auto with v62.
+auto.
 Qed.
 
 
@@ -114,7 +114,7 @@ Definition LA (u : Word) :=
 
 Lemma LA_langage : islanguage X LA.
 unfold LA, islanguage in |- *.
-intros w temp; elim temp; clear temp; auto with v62.
+intros w temp; elim temp; clear temp; auto.
 Qed.
 
 

@@ -86,16 +86,16 @@ unfold f_R_d in |- *.
 intros dans_y_R eg_x_f_y.
 exists (cons (first y) nil).
 apply inmonoid_cons.
-trivial with v62.
+trivial.
 elim (Regles_X_V_R y dans_y_R).
 intros f_y dans_f_y_V temp; elim temp; clear temp.
 intros u eg_y inmono_u.
 rewrite eg_y.
 unfold first in |- *.
 unfold P in |- *.
-auto with v62.
+auto.
 exists (eps X).
-auto with v62.
+auto.
 exists (word_inv (second y)).
 elim (Regles_X_V_R y dans_y_R).
 intros f_y dans_f_y_V temp; elim temp; clear temp.
@@ -126,20 +126,20 @@ unfold f_X_d in |- *.
 intros dans_y_X eg_x_f_y.
 exists (cons y nil).
 apply inmonoid_cons.
-trivial with v62.
+trivial.
 unfold P in |- *.
-auto with v62.
+auto.
 
 exists y.
-auto with v62.
+auto.
 exists nil.
-trivial with v62.
+trivial.
 assumption.
 
 apply dans_map.
 assumption.
 
-auto with v62.
+auto.
 Qed.
 
 
@@ -148,7 +148,7 @@ red in |- *.
 split.
 unfold wd in |- *.
 apply inmonoid_cons.
-trivial with v62.
+trivial.
 unfold P in |- *.
 apply union_d.
 apply isGram3 with X R.
@@ -173,7 +173,7 @@ apply Word_rec.
 
 exists nil.
 exists nil.
-auto with v62.
+auto.
 
 intros x w Hyp.
 elim Hyp.
@@ -190,16 +190,16 @@ apply inmonoid_cons; assumption.
 split.
 unfold Append in |- *.
 simpl in |- *.
-auto with v62.
+auto.
 
 elim spec_or; intro; assumption.
 intro N_dans_x_X.
 exists nil.
 exists (cons x w).
 split.
-auto with v62.
+auto.
 split.
-auto with v62.
+auto.
 apply or_intror.
 exists x.
 assumption.
@@ -244,7 +244,7 @@ replace a' with (Append a' nil).
 generalize x; clear x; simple induction x.
 
 intro temp; elim temp.
-auto with v62.
+auto.
 
 intros x0 w Hyp temp; elim temp; clear temp.
 intros a_eg b'_eg.
@@ -274,7 +274,7 @@ replace a with (Append a nil).
 generalize x; clear x; simple induction x.
 
 intro temp; elim temp.
-auto with v62.
+auto.
 
 intros x0 w Hyp temp; elim temp; clear temp.
 intros a'_eg b_eg.
@@ -309,7 +309,7 @@ unfold cut1, cut in |- *.
 elim (cut_spec w).
 intros a temp; elim temp; clear temp.
 intros b temp; elim temp; clear temp.
-simpl in |- *; auto with v62.
+simpl in |- *; auto.
 Qed.
 
 Lemma cut_Append : forall w : Word, w = Append (cut1 w) (cut2 w).
@@ -319,7 +319,7 @@ elim (cut_spec w).
 intros a temp; elim temp; clear temp.
 intros b temp; elim temp; clear temp.
 intros inm temp; elim temp.
-simpl in |- *; auto with v62.
+simpl in |- *; auto.
 Qed.
 
 Lemma cut1_cons :
@@ -353,7 +353,7 @@ absurd (cons a w = nil).
 discriminate.
 rewrite <- b'_nil.
 rewrite <- App_nil_b'_eg_cons_a_w.
-trivial with v62.
+trivial.
 intro temp; elim temp; clear temp.
 intros x0 N_dans_x0_X temp; elim temp; clear temp.
 intros w1 eg_b'_cons.
@@ -377,7 +377,7 @@ apply cons_cons_inv2 with x0 a.
 assumption.
 assumption.
 
-split; auto with v62.
+split; auto.
 assumption.
 assumption.
 Qed.
@@ -387,24 +387,24 @@ Lemma cut1_Append :
  forall u v : Word, inmonoid X u -> cut1 (Append u v) = Append u (cut1 v).
 intros u v.
 generalize u; clear u; simple induction u.
-auto with v62.
+auto.
 intros x w Hyp inmon_x_w.
 replace (cut1 (Append (cons x w) v)) with (cons x (cut1 (Append w v))).
 replace (Append (cons x w) (cut1 v)) with (cons x (Append w (cut1 v))).
 apply cons_cons.
-trivial with v62.
+trivial.
 
 apply Hyp.
 apply inmonoid_cons_inv with x; assumption.
 
-trivial with v62.
+trivial.
 
 apply sym_equal.
 unfold Append in |- *.
 simpl in |- *.
 apply cut1_cons.
 apply inmonoid_cons_inv2 with w.
-trivial with v62.
+trivial.
 Qed.
 
 
@@ -426,7 +426,7 @@ cut (inmonoid X a).
 cut (Append a b = cons A v).
 clear App_eg inmon_a.
 generalize a; clear a; simple induction a.
-	auto with v62.
+	auto.
 
 	intros x w Hyp App_eg_x_w inmon.
 	absurd (dans A X).
@@ -451,7 +451,7 @@ elim Der.
 intros.
 replace (cut1 (cons A v)) with nil.
 exists (Append u v).
-trivial with v62.
+trivial.
 replace (cut2 (cons A v)) with (cons A v).
 apply Deriveg1.
 assumption.
@@ -480,7 +480,7 @@ cut (Append a b = cons A v). (***)(*pour l'induction*)
 clear App_eg inmon_a p.
 generalize a; clear a; simple induction a.
 
-auto with v62.
+auto.
 
 intros x0 w Hyp App inmon.
 absurd (dans A X).
@@ -513,7 +513,7 @@ exists w.
 replace (cut1 (cons x0 u)) with (cons x0 (cut1 u)).
 unfold Append in |- *.
 simpl in |- *.
-apply cons_cons; trivial with v62.
+apply cons_cons; trivial.
 
 apply sym_equal.
 apply cut1_cons.
@@ -541,13 +541,13 @@ elimtype (u = nil \/ (exists w : Word, (exists x : Elt, u = cons x w))).
 intros u_eg.
 exists (Append u0 v0).
 rewrite u_eg.
-trivial with v62.
+trivial.
 replace v with (cons A v0).
 apply Deriveg1; assumption.
 replace v with (Append u v).
-auto with v62.
+auto.
 rewrite u_eg.
-trivial with v62.
+trivial.
 intro temp; elim temp; clear temp.
 intros w temp; elim temp; clear temp.
 intros x0 u_eg inmon_u.
@@ -565,18 +565,18 @@ assumption.
 apply cons_cons_inv1 with v0 (Append w v).
 change (cons A v0 = Append (cons x0 w) v) in |- *.
 rewrite <- u_eg.
-auto with v62.
+auto.
 
 clear eg_App.
 generalize u; clear u; simple induction u.
 
-auto with v62.
+auto.
 
 intros x0 w hyp.
 apply or_intror.
 exists w.
 exists x0.
-trivial with v62.
+trivial.
 
 intros u0 v0 x0 dans_x0_X Derg_u_v Hyp u v.
 elimtype (u = nil \/ (exists w : Word, (exists x : Elt, u = cons x w))).
@@ -584,7 +584,7 @@ intro eg_u.
 rewrite eg_u.
 intros App_eg inmon_nil.
 exists (cons x0 v0).
-trivial with v62.
+trivial.
 replace v with (cons x0 u0).
 apply Deriveg2.
 assumption.
@@ -611,12 +611,12 @@ apply inmonoid_cons_inv with x1.
 assumption.
 
 generalize u; clear u; simple induction u.
-auto with v62.
+auto.
 intros x2 w hyp.
 apply or_intror.
 exists w.
 exists x2.
-trivial with v62.
+trivial.
 
 Qed.
 
@@ -687,14 +687,14 @@ unfold Derive_P_A_2_nind in |- *.
 elim Der.
 intros w u x0 dans_x0_X.
 apply or_introl.
-exists x0; auto with v62.
+exists x0; auto.
 
 intros v w u x0 dans_couple_Der.
 apply or_intror.
 exists x0.
 exists w.
-auto with v62.
-exists u; auto with v62.
+auto.
+exists u; auto.
 Qed.
 
 
@@ -727,17 +727,17 @@ intros x0 dans_x0_X temp; elim temp; clear temp.
 intros eg_cons_x_x0 eg_v_cons.
 exists (snd z).
 replace x with x0.
-trivial with v62.
+trivial.
 apply cons_cons_inv1 with (fst z) u.
-auto with v62.
+auto.
 unfold Derivestar_P_A_2 in |- *.
 replace u with (fst z).
 cut (Rstar (Word * Word) Derive_P_A_2 z (nil, nil)).
 elim z.
-auto with v62.
+auto.
 assumption.
 apply cons_cons_inv2 with x0 x.
-auto with v62.
+auto.
 
 simpl in |- *.
 intros x0 temp; elim temp; clear temp; intros w eg temp; elim temp;
@@ -747,9 +747,9 @@ absurd (dans x0 V).
 apply inter_dans with X.
 exact (isGram2 X V R S' Gram).
 replace x0 with x.
-trivial with v62.
+trivial.
 apply cons_cons_inv1 with u w.
-auto with v62.
+auto.
 apply Regles_inv1 with X R (word u0).
 exact Regles_X_V_R.
 assumption.
@@ -775,8 +775,8 @@ elimtype (u = nil \/ (exists w : Word, (exists x : Elt, u = cons x w))).
 intros u_eg.
 rewrite u_eg.
 intros App_eg inmon_nil.
-exists y; auto with v62.
-replace v with nil; trivial with v62.
+exists y; auto.
+replace v with nil; trivial.
 
 intro temp; elim temp; clear temp; intros w temp; elim temp; clear temp.
 intros x0 eg_u.
@@ -784,22 +784,22 @@ rewrite eg_u.
 intros cons_eg_nil.
 absurd (cons x0 (Append w v) = nil).
 discriminate.
-trivial with v62.
+trivial.
 
 generalize u; clear u; simple induction u.
-auto with v62.
-intros x1 w1 Hyp; apply or_intror; exists w1; exists x1; trivial with v62.
+auto.
+intros x1 w1 Hyp; apply or_intror; exists w1; exists x1; trivial.
 
 intros x0 w Hyp y Der_star_cons u v App_eg inmon_X.
 elimtype (u = nil \/ (exists w : Word, (exists x : Elt, u = cons x w))).
 intros u_eg.
 rewrite u_eg.
 replace v with (cons x0 w).
-exists y; trivial with v62.
+exists y; trivial.
 replace v with (Append u v).
-auto with v62.
+auto.
 rewrite u_eg.
-trivial with v62.
+trivial.
 
 intro temp; elim temp; clear temp; intros w1 temp; elim temp; clear temp.
 intros x1 eg_u.
@@ -819,35 +819,35 @@ apply cons_cons.
 apply cons_cons_inv1 with (Append w1 v) w.
 rewrite <- App_eg.
 rewrite eg_u.
-trivial with v62.
-trivial with v62.
-trivial with v62.
-trivial with v62.
+trivial.
+trivial.
+trivial.
+trivial.
 
 apply Hyp.
-trivial with v62.
+trivial.
 apply cons_cons_inv2 with x1 x0.
 rewrite <- App_eg.
 rewrite eg_u.
-trivial with v62.
+trivial.
 apply inmonoid_cons_inv with x1.
 rewrite <- eg_u.
-trivial with v62.
+trivial.
 apply Der_cons_inv.
 replace x0 with x1.
 apply inmonoid_cons_inv2 with w1.
 rewrite <- eg_u.
-trivial with v62.
+trivial.
 apply cons_cons_inv1 with (Append w1 v) w.
 rewrite <- App_eg.
 rewrite eg_u.
-trivial with v62.
+trivial.
 assumption.
 
 clear inmon_X App_eg.
 generalize u; clear u; simple induction u.
-auto with v62.
-intros x1 w1 tmp; apply or_intror; exists w1; exists x1; trivial with v62.
+auto.
+intros x1 w1 tmp; apply or_intror; exists w1; exists x1; trivial.
 
 Qed.
 
@@ -863,9 +863,9 @@ elimtype
  (ex2 (fun w : Word => Append (cons u nil) w = y)
     (fun w : Word => Derivestar_P_A_2 (x, w) (nil, nil))).
 intros w eg_App Der.
-exists w; trivial with v62.
+exists w; trivial.
 
-apply Derive_P_A_2_imp_Der_P_A_2_App with (cons u x); auto with v62.
+apply Derive_P_A_2_imp_Der_P_A_2_App with (cons u x); auto.
 Qed.
 
 
@@ -883,7 +883,7 @@ apply inmonoid_cons_inv2 with w; assumption.
 apply Hyp.
 apply inmonoid_cons_inv with x0; assumption.
 Qed.
-Hint Resolve Derivestar_P_A_2_x: v62.
+Hint Resolve Derivestar_P_A_2_x.
 
 
 Lemma Derivegstar_imp_Derivestar_P_A_2 :
@@ -893,7 +893,7 @@ unfold Derivegstar, Rstar in |- *.
 intros x y Der_star.
 pattern x, y in |- *.
 apply Der_star.
-auto with v62.
+auto.
 
 intros u v w Derg_u_v.
 generalize w.
@@ -917,7 +917,7 @@ apply Rstar_R with (u0, x1).
 apply Derive_X.
 assumption.
 apply Hyp1.
-auto with v62.
+auto.
 apply inmonoid_cons_inv with x0.
 rewrite <- w0_eg_cons.
 assumption.
@@ -926,7 +926,7 @@ apply Der_cons_inv.
 assumption.
 exact (Hyp2 inmon_w0).
 Qed.
-Hint Resolve Derivegstar_imp_Derivestar_P_A_2: v62.
+Hint Resolve Derivegstar_imp_Derivestar_P_A_2.
 
 
 (*equivalence de Derive_P_A_2 et Derive_P_A*)
@@ -947,8 +947,8 @@ apply union_d.
 change (dans (f_X_d x0) (map f_X_d X)) in |- *.
 apply dans_map_inv.
 assumption.
-trivial with v62.
-trivial with v62.
+trivial.
+trivial.
 
 intros v w u x0 dans_couple.
 replace (cons x0 w) with (Append (cons x0 nil) w).
@@ -960,10 +960,10 @@ replace (couple (word (cons x0 nil)) (couple (eps X) (word u))) with
 apply dans_map_inv.
 assumption.
 unfold f_R_d in |- *.
-trivial with v62.
-trivial with v62.
+trivial.
+trivial.
 Qed.
-Hint Resolve Derive_P_A_2_imp_Derive_P_A: v62.
+Hint Resolve Derive_P_A_2_imp_Derive_P_A.
 
 Lemma Derivestar_P_A_2_imp_Derivestar_P_A :
  forall x y : Word * Word, Derivestar_P_A_2 x y -> Derivestar_P_A X d x y.
@@ -974,9 +974,9 @@ apply Rstar_Der.
 intros.
 apply Rstar_reflexive.
 intros u v w Hyp1 Hyp2.
-apply Rstar_R with v; auto with v62.
+apply Rstar_R with v; auto.
 Qed.
-Hint Resolve Derivestar_P_A_2_imp_Derivestar_P_A: v62.
+Hint Resolve Derivestar_P_A_2_imp_Derivestar_P_A.
 
 
 (*seconde implication*)
@@ -1020,23 +1020,23 @@ replace (Append nil w) with w.
 replace (Append (cons x0 nil) w) with (cons x0 w).
 apply Derive_X.
 assumption.
-trivial with v62.
-trivial with v62.
+trivial.
+trivial.
 apply word_word_inv.
 apply couple_couple_inv2 with r x0.
 apply couple_couple_inv2 with (word (cons r nil)) (word w1).
-auto with v62.
+auto.
 replace x0 with r.
 apply word_word_inv.
 apply couple_couple_inv1 with (couple r (word nil)) (couple x0 (word w2)).
-auto with v62.
+auto.
 apply couple_couple_inv1 with (word nil) (word w2).
 apply couple_couple_inv2 with (word (cons r nil)) (word w1).
-auto with v62.
+auto.
 
 apply dans_map.
 assumption.
-auto with v62.
+auto.
 
 unfold d in |- *.
 intros w w1 w2 u dans_couple_d.
@@ -1064,20 +1064,20 @@ replace (first (couple A (word B))) with A.
 replace (second (couple A (word B))) with (word B).
 rewrite <- eg_r.
 assumption.
-trivial with v62.
-trivial with v62.
+trivial.
+trivial.
 
 apply Regles_X_V_R.
 assumption.
 apply couple_couple_inv2 with (eps X) (eps X).
 apply couple_couple_inv2 with (word (cons (first r) nil)) (word w1).
-auto with v62.
-trivial with v62.
+auto.
+trivial.
 apply word_word_inv.
 apply
  couple_couple_inv1
   with (couple (eps X) (second r)) (couple (eps X) (word w2)).
-auto with v62.
+auto.
 apply dans_map.
 assumption.
 
@@ -1092,12 +1092,12 @@ replace (eps X) with r.
 assumption.
 apply couple_couple_inv1 with (word nil) (word w2).
 apply couple_couple_inv2 with (word (cons r nil)) (word w1).
-auto with v62.
+auto.
 apply dans_map.
 assumption.
-auto with v62.
+auto.
 Qed.
-Hint Resolve Derive_P_A_imp_Derive_P_A_2: v62.
+Hint Resolve Derive_P_A_imp_Derive_P_A_2.
 
 
 Lemma Derivestar_P_A_imp_Derivestar_P_A_2 :
@@ -1109,10 +1109,10 @@ apply Der_star.
 intros.
 apply Rstar_reflexive.
 intros u v w Deri_u_v Rstar_v_w.
-apply Rstar_R with v; auto with v62.
+apply Rstar_R with v; auto.
 Qed.
 
-Hint Resolve Derivestar_P_A_imp_Derivestar_P_A_2: v62.
+Hint Resolve Derivestar_P_A_imp_Derivestar_P_A_2.
 
 
 
@@ -1124,7 +1124,7 @@ Theorem Derivestar_imp_Derivestar_P_A :
  forall x y : Word,
  Derivestar R x y -> inmonoid X y -> Derivestar_P_A X d (x, y) (nil, nil).
 
-auto with v62.
+auto.
 Qed.
 (**************************************************************)
 
@@ -1156,8 +1156,8 @@ change
 
 elim Derive_P_A_3_s1_v1_s2_v2; simpl in |- *.
 intros w u s x dans_x_X.
-replace (cons x u) with (Append (cons x nil) u); trivial with v62.
-auto with v62.
+replace (cons x u) with (Append (cons x nil) u); trivial.
+auto.
 Qed.
 
 
@@ -1173,7 +1173,7 @@ change
      (s1, (u1, v1)) (s2, (u2, v2))) in |- *.
 
 apply Derivestar_P_A_3_s1_v1_s2_v2.
-trivial with v62.
+trivial.
 intros u v w.
 elim u. intros uu1 uuc. elim uuc. intros uu2 uu3.
 elim v. intros vv1 vvc. elim vvc. intros vv2 vv3.
@@ -1217,7 +1217,7 @@ intros s1 Der_3_s_u_s1_v.
 elim (Ex_v_w s1).
 intros s2 Rstar_s1_v_s2_w.
 exists s2.
-apply Rstar_R with (s1, v); trivial with v62.
+apply Rstar_R with (s1, v); trivial.
 apply Derive_P_A_2_imp_Derive_P_A_3; assumption.
 Qed.
 
@@ -1227,7 +1227,7 @@ Lemma Deriveg_imp_Deriveg_App_2 :
  inmonoid X a -> Deriveg X R x y -> Deriveg X R (Append a x) (Append a y).
 intros x y.
 simple induction a.
-auto with v62.
+auto.
 
 intros x0 w Hyp inmonoid_X_cons_x0_w Der_x_y.
 change (Deriveg X R (cons x0 (Append w x)) (cons x0 (Append w y))) in |- *.
@@ -1257,7 +1257,7 @@ intros w u s0 x0 dans_x0_X inmon_s.
 replace (Append (Append s0 (cons x0 nil)) w) with
  (Append s0 (Append (cons x0 nil) w)).
 apply Rstar_reflexive.
-auto with v62.
+auto.
 
 intros v w u s0 x0 dans_couple_x0_u_R inmon_s.
 apply Rstar_R with (Append s0 (Append u w)).
@@ -1279,8 +1279,8 @@ change
 
 elim Der; simpl in |- *.
 intros.
-apply inmonoid_Append; auto with v62.
-auto with v62.
+apply inmonoid_Append; auto.
+auto.
 Qed.
 
 
@@ -1331,19 +1331,19 @@ replace x with (Append nil x).
 replace y with (Append s2 nil).
 apply Derivestar_P_A_3_imp_Derivegstar with y nil.
 assumption.
-trivial with v62.
+trivial.
 replace y with (Append nil y).
 apply sym_equal.
 apply Derisvestar_P_A_3_conserve with x nil.
 assumption.
-trivial with v62.
-trivial with v62.
+trivial.
+trivial.
 
 apply Derivestar_P_A_2_imp_Derivestar_P_A_3.
-auto with v62.
+auto.
 Qed.
 
-Hint Resolve Derivestar_P_A_imp_Derivestar: v62.
+Hint Resolve Derivestar_P_A_imp_Derivestar.
 
 
 
@@ -1356,9 +1356,9 @@ red in |- *.
 unfold l_inclus, LA, LG in |- *.
 split.
 intros w temp; elim temp; intros Der inmon.
-auto with v62.
+auto.
 intros w temp; elim temp; intros Der inmon.
-auto with v62.
+auto.
 Qed.
 
 

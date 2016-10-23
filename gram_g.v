@@ -52,8 +52,8 @@ Inductive Deriveg (X R : Ensf) : Word -> Word -> Prop :=
       forall (u v : Word) (x : Elt),
       dans x X -> Deriveg X R u v -> Deriveg X R (cons x u) (cons x v).
 
-Hint Resolve Deriveg1: v62.
-Hint Resolve Deriveg2: v62.
+Hint Resolve Deriveg1.
+Hint Resolve Deriveg2.
 
 
 Definition Derivegstar (X R : Ensf) := Rstar Word (Deriveg X R).
@@ -63,9 +63,9 @@ Lemma Deriveg_Derive :
 intros X R u v Der_g.
 elim Der_g.
 intros.
-apply Derive1; auto with v62.
+apply Derive1; auto.
 intros.
-apply Derive2; auto with v62.
+apply Derive2; auto.
 Qed.
 
 Lemma Derivegstar_Derivestar :
@@ -88,4 +88,4 @@ Axiom
   Derivestar_Derivegstar :
     forall (X R : Ensf) (u v : Word), Derivestar R u v -> Derivegstar X R u v.
 
-Hint Resolve Derivestar_Derivegstar: v62.
+Hint Resolve Derivestar_Derivegstar.

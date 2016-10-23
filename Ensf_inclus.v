@@ -57,22 +57,22 @@ Require Import Ensf_produit.
 
 Definition inclus (A B : Ensf) : Prop := forall x : Elt, dans x A -> dans x B.
 
-Hint Unfold inclus: v62.
+Hint Unfold inclus.
 
 Lemma empty_inclus : forall x : Ensf, inclus empty x.
 unfold inclus in |- *; intros.
-absurd (dans x0 empty); auto with v62.
+absurd (dans x0 empty); auto.
 Qed.
-Hint Resolve empty_inclus: v62.
+Hint Resolve empty_inclus.
 
 Lemma refl_inclus : forall x : Ensf, inclus x x.
-auto with v62.
+auto.
 Qed.
-Hint Resolve refl_inclus: v62.
+Hint Resolve refl_inclus.
 
 Lemma inclus_trans :
  forall a b c : Ensf, inclus a b -> inclus b c -> inclus a c.
-auto with v62.
+auto.
 Qed.
 
 Lemma cart_inclus :
@@ -83,36 +83,36 @@ intros.
 cut
  (exists x1 : Elt,
     (exists x2 : Elt, dans x1 a /\ dans x2 c /\ x = couple x1 x2)).
-2: apply coupl3; auto with v62.
+2: apply coupl3; auto.
 intro H2; elim H2; clear H2.
 intros x1 H2; elim H2; clear H2.
 intros x2 H2; elim H2; clear H2.
 intros H2 H3; elim H3; clear H3.
 intros H3 H4.
 rewrite H4.
-auto with v62.
+auto.
 Qed.
-Hint Resolve cart_inclus: v62.
+Hint Resolve cart_inclus.
 
 Lemma inclus_add :
  forall (a b : Ensf) (y : Elt), inclus a b -> inclus a (add y b).
-auto with v62.
+auto.
 Qed.
-Hint Resolve inclus_add: v62.
+Hint Resolve inclus_add.
 
 Lemma singl_inclus_add :
  forall (e : Elt) (a : Ensf), inclus (singleton e) (add e a).
 unfold inclus in |- *.
 intros e a x H.
-cut (x = e); auto with v62.
+cut (x = e); auto.
 intro H0.
-rewrite H0; auto with v62.
+rewrite H0; auto.
 Qed.
-Hint Resolve singl_inclus_add: v62.
+Hint Resolve singl_inclus_add.
 
 Lemma inclus_singl :
  forall (e : Elt) (a : Ensf), inclus (singleton e) a -> dans e a.
-auto with v62.
+auto.
 Qed.
 
 
@@ -121,41 +121,41 @@ Lemma add_inclus :
 unfold inclus in |- *.
 intros.
 cut (x = x0 \/ dans x0 a).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H2; elim H2; clear H2.
-intro H2; rewrite <- H2; auto with v62.
-auto with v62.
+intro H2; rewrite <- H2; auto.
+auto.
 Qed.
-Hint Resolve add_inclus: v62.
+Hint Resolve add_inclus.
 
 Lemma dans_trans :
  forall (x : Elt) (a b : Ensf), dans x a -> inclus a b -> dans x b.
-auto with v62.
+auto.
 Qed.
 
 Lemma union_inclus :
  forall a b c : Ensf, inclus a c -> inclus b c -> inclus (union a b) c.
 unfold inclus in |- *.
 intros.
-cut (dans x a \/ dans x b); auto with v62.
-intro H2; elim H2; auto with v62.
+cut (dans x a \/ dans x b); auto.
+intro H2; elim H2; auto.
 Qed.
-Hint Resolve union_inclus: v62.
+Hint Resolve union_inclus.
 
 Lemma inclus_g : forall a b : Ensf, inclus a (union a b).
-auto with v62.
+auto.
 Qed.
 
 Lemma inclus_d : forall a b : Ensf, inclus b (union a b).
-auto with v62.
+auto.
 Qed.
 
 Lemma inclus_g2 : forall A B C : Ensf, inclus A B -> inclus A (union B C).
-auto with v62.
+auto.
 Qed.
-Hint Resolve inclus_g2: v62.
+Hint Resolve inclus_g2.
 
 Lemma inclus_d2 : forall A B C : Ensf, inclus A C -> inclus A (union B C).
-auto with v62.
+auto.
 Qed.
-Hint Resolve inclus_d2: v62.
+Hint Resolve inclus_d2.

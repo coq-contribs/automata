@@ -50,7 +50,7 @@ Require Import Ensf_types.
 Inductive dans : Elt -> Ensf -> Prop :=
   | dans_add1 : forall (x : Elt) (e : Ensf), dans x (add x e)
   | dans_add2 : forall (x y : Elt) (e : Ensf), dans x e -> dans x (add y e).
-Hint Resolve dans_add1 dans_add2: v62.
+Hint Resolve dans_add1 dans_add2.
  
 (*  Quelques resultats concernant l'appartenance...  *)
  
@@ -61,7 +61,7 @@ simple inversion H.
 left.
 injection H1.
 intros.
-apply trans_equal with x0; [ auto with v62 | assumption ].
+apply trans_equal with x0; [ auto | assumption ].
 
 intro.
 right.
@@ -76,29 +76,29 @@ Lemma dans_add_contr :
  forall (x y : Elt) (e : Ensf), y <> x -> ~ dans x e -> ~ dans x (add y e).
 intros; red in |- *; intro.
 absurd (y = x \/ dans x e).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 red in |- *.
 intro.
-elim H2; auto with v62.
+elim H2; auto.
 Qed.
  
 Lemma empty_empty : forall E : Elt, ~ dans E empty.
 unfold not in |- *; intros E H.
 simple inversion H; [ discriminate H1 | discriminate H2 ].
 Qed.
-Hint Resolve empty_empty: v62.
+Hint Resolve empty_empty.
  
 Lemma dans_empty_imp_P : forall (x : Elt) (P : Prop), dans x empty -> P.
 intros.
 elimtype False.
-cut (~ dans x empty); auto with v62.
+cut (~ dans x empty); auto.
 Qed.
  
 Lemma singl2 : forall x : Elt, dans x (singleton x).
 unfold singleton in |- *.
-auto with v62.
+auto.
 Qed.
-Hint Resolve singl2: v62.
+Hint Resolve singl2.
 
 Lemma singl2_inv : forall x e : Elt, dans x (singleton e) -> x = e :>Elt.
 unfold singleton in |- *.

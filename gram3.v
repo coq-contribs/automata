@@ -86,9 +86,9 @@ unfold Xim, Vim in |- *; simpl in |- *.
 red in |- *.
 (*Intuition.*) split; [ idtac | split ].
 
-auto with v62.
+auto.
 
-auto with v62.
+auto.
 
 intros x dans_x_map_f_X dans_x_map_f_V.
 elimtype (exists y : Elt, dans y X /\ x = f y :>Elt).
@@ -103,13 +103,13 @@ apply imp.
 replace v with x_ant.
 	assumption.
 	apply Mono.
-		auto with v62.
-		auto with v62.
+		auto.
+		auto.
 		rewrite <- x_egal_f_x_ant; assumption.
 assumption.
 exact (isGram2 X V R S Gram).
-auto with v62.
-auto with v62.
+auto.
+auto.
 Qed.
 
 
@@ -121,17 +121,17 @@ Qed.
 
 Lemma Iso : is_iso (union X V) (union Xim Vim) f.
 rewrite union_Xim_Vim_map_f_union_X_V.
-auto with v62.
+auto.
 Qed.
 
-Hint Resolve Iso: v62.
+Hint Resolve Iso.
 
 Let wef := Word_ext f.
 Let weinvf := Word_ext invf.
 
 Lemma invf_f : Id (union X V) (comp invf f).
 unfold invf in |- *.
-auto with v62.
+auto.
 Qed.
 
 Lemma weinvf_wef : Id_words (union X V) (comp_word weinvf wef).
@@ -171,10 +171,10 @@ unfold Gim' in |- *.
 unfold Sim, Rim, Gim3, Vim, Gim2, Xim, Gim, imageGram in |- *; simpl in |- *.
 
 apply pair_equal.
-rewrite (map_map_eg_map_comp invf f X); auto with v62.
+rewrite (map_map_eg_map_comp invf f X); auto.
 
 apply pair_equal.
-rewrite (map_map_eg_map_comp invf f V); auto with v62.
+rewrite (map_map_eg_map_comp invf f V); auto.
 
 apply pair_equal.
 
@@ -194,8 +194,8 @@ Lemma egalG : Gim' = (X, (V, (R, S))).
 rewrite egalGim'_image_comp.
 apply Id_image_G.
 unfold invf in |- *.
-auto with v62.
-auto with v62.
+auto.
+auto.
 Qed.
 
 
@@ -233,12 +233,12 @@ rewrite <- egalX.
 
 replace w with (weinvf (wef w)).
 	unfold Sim', Rim', Gim3', Vim', Gim2', Xim', Gim', weinvf in |- *.
-	auto with v62.
+	auto.
 	change (comp_word weinvf wef w = w :>Word) in |- *.
 	apply Id_words_inv with X.
 		assumption.
 		apply Id_words_inclus with (union X V).
-			auto with v62.
+			auto.
 			exact weinvf_wef.
 Qed.
 
@@ -260,7 +260,7 @@ split.
 	intros w LG_X_w.
 	replace w with (wef w).
 		unfold Sim, Rim, Gim3, Vim, Gim2, Xim, Gim, wef in |- *.
-		auto with v62.
+		auto.
 
 		apply (Id_words_inv X).
 			prolog [ LG_inv ] 2.
@@ -288,7 +288,7 @@ split.
 
 		apply Id_words_inv with (union X V).
 			apply inmonoid_inclus with X.
-				auto with v62.
+				auto.
 				replace X with Xim.
 				prolog [ LG_inv ] 2.
 				(*Apply LG_inv with Vim Rim Sim;Assumption.*)
