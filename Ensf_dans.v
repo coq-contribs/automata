@@ -111,4 +111,4 @@ injection H2; intros.
 apply dans_empty_imp_P with x0.
 rewrite <- H0; assumption.
 Qed.
-Hint Resolve singl2_inv: v62.
+Hint Resolve singl2_inv.

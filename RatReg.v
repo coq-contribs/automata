@@ -224,50 +224,50 @@ cut
     dans e (add e0 q) /\
     dans x alph /\
     dans (couple e (couple x e12)) (add (couple e0 (couple a e3)) d));
- auto with v62.
+ auto.
 intro H5; elim H5; clear H5.
 intros e12 H5; elim H5; clear H5.
 intros H5 H6; elim H6; clear H6.
 intros H6 H7; elim H7; clear H7.
 intros H7 H8.
-apply (chemin_cons e12 e2 q d w0 e x); auto with v62.
-apply (H e0 e12 e2 e3 a q d); auto with v62.
+apply (chemin_cons e12 e2 q d w0 e x); auto.
+apply (H e0 e12 e2 e3 a q d); auto.
 
 cut
  (couple e0 (couple a e3) = couple e (couple x e12) :>Elt \/
   dans (couple e (couple x e12)) d).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H9; elim H9; clear H9.
 intro H9; injection H9.
 intros.
-absurd (dans e0 q); auto with v62.
-rewrite H12; auto with v62.
+absurd (dans e0 q); auto.
+rewrite H12; auto.
 
 intro.
 cut (dans (couple e (couple x e12)) (prodcart q (prodcart alph q))).
 2: apply
     (dans_trans (couple e (couple x e12)) d (prodcart q (prodcart alph q)));
-    auto with v62.
+    auto.
 intro.
-cut (dans e q /\ dans (couple x e12) (prodcart alph q)); auto with v62.
-2: apply coupl2; auto with v62.
+cut (dans e q /\ dans (couple x e12) (prodcart alph q)); auto.
+2: apply coupl2; auto.
 intro H11; elim H11; clear H11.
 intros.
 cut (dans x alph /\ dans e12 q).
-2: apply coupl2; auto with v62.
+2: apply coupl2; auto.
 tauto.
 
 cut
  (couple e0 (couple a e3) = couple e (couple x e12) :>Elt \/
   dans (couple e (couple x e12)) d).
-2: apply dans_add; auto with v62.
+2: apply dans_add; auto.
 intro H9; elim H9; clear H9.
 intro H9; injection H9.
 intros H10 H11 H12.
-absurd (dans e0 q); auto with v62.
-rewrite H12; auto with v62.
+absurd (dans e0 q); auto.
+rewrite H12; auto.
 
-auto with v62.
+auto.
 Qed.
 
 (*  Si un automate reconnait w alors en lui rajoutant un etat e0	*)
