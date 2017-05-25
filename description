@@ -1,8 +1,8 @@
 Name: Automata
 Title: Beginning of formal language theory
-Author: Judicaël Courant
-Author: Jean-Christophe Filliâtre
-Institution: Ecole Normale Supérieure de Lyon
+Author: JudicaÃ«l Courant
+Author: Jean-Christophe FilliÃ¢tre
+Institution: Ecole Normale SupÃ©rieure de Lyon
 Date: June-July 1993
 Description: This library formalises the beginning of formal language theory: 
 	     finite automata and rational languages, context-free grammars
